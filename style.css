@@ -21,6 +21,7 @@ text-align: right;
   right: 0px;
   z-index: 0;
   text-align: center;
+  font-family: 'Raleway', sans-serif;
 }
 
 .footer{
@@ -39,14 +40,14 @@ text-align: right;
 
 #logo{
   position: fixed;
-  top: 16px;
-  left:16px;
+  top: 22px;
+  left: 22px;
 }
 
 #fp{
   text-align: center;
   font-size: 12px;
-  font-family: helvetica;
+  font-family: 'Raleway', sans-serif;
   color: white;
   line-height: 50px;
 }
@@ -58,6 +59,7 @@ text-align: right;
 	text-align: center;
   font-size: 12px;
 	list-style: none;
+  font-family: 'Raleway', sans-serif;
 }
 
 #menu ul {

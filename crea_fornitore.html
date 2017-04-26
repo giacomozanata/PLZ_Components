@@ -1,6 +1,7 @@
 <html>
 <head>
   <title>PLZCOMPONENTS</title>
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 </head>
 <body>
   <link rel="stylesheet" type="text/css" href="style.css">
