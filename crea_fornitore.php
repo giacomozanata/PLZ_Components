@@ -26,7 +26,7 @@
 
   <div class="main">
 
-    <form action="<?php echo $SERVER['PHP_SELF']; ?>" method="POST">
+    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
     <br><br><br><br><br>
       <?php
 
@@ -94,25 +94,27 @@
               echo "Error: " . $sql . "<br>" . mysqli_error($conn);
               }
 
-              echo "<br><br>";
-              echo "<form method='get' action='crea_fornitore.html'>";
-              echo "<button type='submit'>AGGIUNGI UN ALTRO FORNITORE</button>";
-              echo "</form>";
-
-              mysqli_close($conn);
+              mysqli_close($conn);  
 
             }
 
-      if($flag == true){
+      ?>
+
+    </form>
+
+    <?php
+      if($flag == false){
+        echo "<br><br>";
+        echo "<form method='get' action='crea_fornitore.html'>";
+        echo "<button type='submit'>AGGIUNGI UN ALTRO FORNITORE</button>";
+        echo "</form>";
+      }else if($flag == true){
         echo "<br><br>";
         echo "<form method='get' action='history.go(-1);return true;'>";
         echo "<button type='submit'>INDIETRO</button>";
         echo "</form>";
       }
-
-      ?>
-
-    </form>
+    ?>
 
   </div>
 
