@@ -90,3 +90,8 @@ text-align: right;
 #p_error{
   color: red;
 }
+
+#p_insert{
+  color: green;
+  font-weight: bold;
+}

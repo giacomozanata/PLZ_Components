@@ -8,7 +8,7 @@
   <div id="header" class="header">
 
     <div id="logo">
-     <a href="index.html"> <img src="onlinelogomaker-042417-1841-8476.png"> </a>
+     <a href="index.html"> <img src="logo.png"> </a>
     </div>
 
     <div id="menu">
@@ -89,12 +89,12 @@
                 VALUES ('$p_iva','$rag_soc','$indirizzo','$telefono')";
 
               if (mysqli_query($conn, $sql)) {
-              echo "Dati inseriti con successo!!";
+              echo "<p id='p_insert'>Dati inseriti con successo!!</p><br>";
               } else {
               echo "Error: " . $sql . "<br>" . mysqli_error($conn);
               }
 
-              mysqli_close($conn);  
+              mysqli_close($conn);
 
             }
 
