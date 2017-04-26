@@ -1,0 +1,92 @@
+.header{
+background-color: #033860;
+width: auto;
+height: auto;
+min-height: 150px;
+min-width: 800px;
+position: fixed;
+top: 0px;
+left: 0px;
+right: 0px;
+z-index: 2;
+text-align: right;
+}
+
+.main{
+  padding-top: 10em;
+  width: auto;
+  height: auto;
+  background-color: white;
+  left: 0px;
+  right: 0px;
+  z-index: 0;
+  text-align: center;
+}
+
+.footer{
+  width: auto;
+  height: auto;
+  min-height: 50px;
+  min-width: 800px;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  background-color: #033860;
+  z-index: 2;
+  text-align: center;
+}
+
+#logo{
+  position: fixed;
+  top: 16px;
+  left:16px;
+}
+
+#fp{
+  text-align: center;
+  font-size: 12px;
+  font-family: helvetica;
+  color: white;
+  line-height: 50px;
+}
+
+#menu li{
+  line-height: 120px;
+	float: left;
+	width: 140px;
+	text-align: center;
+  font-size: 12px;
+	list-style: none;
+}
+
+#menu ul {
+  position: fixed;
+  right: -825px;
+}
+
+#menu li a{
+  background-color: #03487C;
+	color: #FFF;
+	text-decoration: none;
+	display: block;
+  border: 1px solid #033864;
+}
+
+#menu li a:hover {
+	text-shadow: 0px 0px 30px #86BBD8;
+}
+
+#menu ul ul:hover {
+	box-shadow: 0px 20px 30px #86BBD8;
+}
+
+#main_cf{
+  padding-top: 10em;
+  text-align: left;
+  left: 16px;
+}
+
+#p_error{
+  color: red;
+}
