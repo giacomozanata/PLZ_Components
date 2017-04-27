@@ -111,9 +111,13 @@
         echo "</form>";
       }else if($flag == true){
         echo "<br><br>";
-        echo "<form method='get' action='history.go(-1);return true;'>";
-        echo "<button type='submit'>INDIETRO</button>";
-        echo "</form>";
+		echo '<button onclick="goBack()">INDIETRO</button>
+			<script>
+				function goBack() {
+					window.history.back();
+				}
+			</script>';
+        
       }
     ?>
 
