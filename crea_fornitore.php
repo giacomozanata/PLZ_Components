@@ -110,16 +110,16 @@
         echo "<button type='submit'>AGGIUNGI UN ALTRO FORNITORE</button>";
         echo "</form>";
       }else if($flag == true){
-        echo "<br><br>";
 		echo '<button onclick="goBack()">INDIETRO</button>
 			<script>
 				function goBack() {
 					window.history.back();
 				}
 			</script>';
-        
+
       }
     ?>
+
 
   </div>
 
