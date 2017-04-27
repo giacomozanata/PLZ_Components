@@ -1,0 +1,47 @@
+<html>
+<head>
+  <title>PLZCOMPONENTS</title>
+</head>
+<body>
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+  <div id="header" class="header">
+
+    <div id="logo">
+     <a href="index.html"> <img src="onlinelogomaker-042417-1841-8476.png"> </a>
+    </div>
+
+    <div id="menu">
+      <ul>
+        <li><a href="index.html">HOME</a><li>
+        <li><a href="#">CREA CLIENTE</a><li>
+        <li><a href="#">INSERISCI PRODOTTI</a><li>
+        <li><a href="#">VENDI PRODOTTI</a><li>
+        <li><a href="crea_fornitore.html">CREA FORNITORE</a><li>
+        <li><a href="#">CERCA</a><li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div id="main_cf" class="main">
+    <form action="crea_cliente.php" method="POST">
+        <p>CODICE FISCALE *:</p>
+        <input type="text" name="Codice_Fiscale">
+        <p>NOME O RAGIONE SOCIALE *:</p>
+        <input type="text" name="nome_o_ragione_sociale">
+        <p>INDIRIZZO *:</p>
+        <input type="text" name="Indirizzo">
+        <p>PARTITA IVA *:</p>
+        <input type="number" name="P_Iva">
+        <p>TELEFONO *:</p>
+        <input type="number" name="Telefono"><br><br><br>
+        <center><button onclick="submit"> CREA CLIENTE! </button></center>
+    </form>
+  </div>
+
+  <div id="footer" class="footer">
+    <p id="fp"> Sviluppato da Zanata Giacomo, Cavaglia' Lorenzo e De Nunzio Pietro<p>
+  </div>
+</body>
+</html>
