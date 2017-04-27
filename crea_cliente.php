@@ -15,7 +15,7 @@
     <div id="menu">
       <ul>
         <li><a href="index.html">HOME</a><li>
-        <li><a href="#">CREA CLIENTE</a><li>
+        <li><a href="crea_cliente.html">CREA CLIENTE</a><li>
         <li><a href="#">INSERISCI PRODOTTI</a><li>
         <li><a href="#">VENDI PRODOTTI</a><li>
         <li><a href="crea_fornitore.html">CREA FORNITORE</a><li>
@@ -68,7 +68,7 @@
     }else{
       echo "La partita iva che hai inserito è: ".$_POST['P_Iva']."<br>";
     }
-        
+
     if(empty($_POST['Telefono'])){
       echo "<p id='p_error'> il campo Telefono deve essere completato </p><br>";
       $flag = true;
