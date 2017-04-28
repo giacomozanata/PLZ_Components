@@ -114,7 +114,7 @@
     <?php
       if($flag == false){
         echo "<br><br>";
-        echo "<form method='get' action='crea_fornitore.html'>";
+        echo "<form method='get' action='crea_cliente.html'>";
         echo "<button type='submit'>AGGIUNGI UN ALTRO CLIENTE</button>";
         echo "</form>";
       }else if($flag == true){
