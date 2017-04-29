@@ -16,7 +16,7 @@
       <ul>
         <li><a href="index.html">HOME</a><li>
         <li><a href="crea_cliente.html">CREA CLIENTE</a><li>
-        <li><a href="#">INSERISCI PRODOTTI</a><li>
+        <li><a href="inserisci_prodotti.php">INSERISCI PRODOTTI</a><li>
         <li><a href="#">VENDI PRODOTTI</a><li>
         <li><a href="crea_fornitore.html">CREA FORNITORE</a><li>
         <li><a href="#">CERCA</a><li>
@@ -31,12 +31,6 @@
     <br><br><br><br><br>
       <?php
 
-      function test_input($data) {
-		      $data = trim($data);
-		      $data = stripcslashes($data);
-		      $data = htmlspecialchars($data);
-		      return $data;
-	       }
 
       $flag = false;
 
@@ -69,30 +63,25 @@
       echo "Il numero di telefono che hai inserito è: ".$_POST['Telefono']."<br>";
     }
 
-    $p_iva = isset($_POST['p_iva']) ? test_input($_POST['p_iva']) : null;
-    $rag_soc = isset($_POST['rag_soc']) ? test_input($_POST['rag_soc']) : null;
-    $indirizzo = isset($_POST['Indirizzo']) ? test_input($_POST['Indirizzo']) : null;
-    $telefono = isset($_POST['Telefono']) ? test_input($_POST['Telefono']) : null;
-
     if($flag == false){
 
       $conn = mysqli_connect("localhost","root","","Pezzi");
 
       if(!$conn){
-      die("Connection failed: " . mysqli_connect_error());
+      die("<p id='p_error'>Connessione Fallita: " . mysqli_connect_error()." </p>");
     }else{
-      echo "connessione con il database avvenuta con successo! <br>";
+      echo "<p id='p_insert'> connessione con il database avvenuta con successo! </p>";
     }
 
       echo "Carico i dati nel database...<br>";
 
       $sql = "INSERT INTO Fornitori(p_iva, Ragione_Sociale, Indirizzo, Telefono)
-                VALUES ('$p_iva','$rag_soc','$indirizzo','$telefono')";
+                VALUES ('".$_POST['p_iva']."','".$_POST['rag_soc']."','".$_POST['Indirizzo']."','".$_POST['Telefono']."')";
 
               if (mysqli_query($conn, $sql)) {
-              echo "<p id='p_insert'>Dati inseriti con successo!!</p><br>";
+              echo "<p id='p_insert'> Dati inseriti con successo!!</p><br>";
               } else {
-              echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+              echo "<p id='p_error'> Errore: " . $sql . "<br>" . mysqli_error($conn) . "</p>";
               }
 
               mysqli_close($conn);
