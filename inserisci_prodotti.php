@@ -50,6 +50,16 @@
                echo "</select>";
 
                ?>
+              <p>CODICE ARTICOLO *:</p>
+                <input type="text" name="cod_articolo">
+            <p>DATA ACQUISTO*:</p>
+                <input type="date" name="data_acquisto">
+            <p>PREZZO *:</p>
+                <input type="text" name="prezzo">
+            <p>QUANTITA' *:</p>
+            <input type="number" name="quantita"><br><br><br>
+            <center><button onclick="submit"> INSERISCI PRODOTTO! </button></center>
+             
 
          </form>
       </div>
