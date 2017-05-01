@@ -33,7 +33,43 @@
 
       $flag=false;
 
-      $conn = mysqli_connect("localhost","root","","Pezzi");
+    if(empty($_POST['p_iva'])){
+      echo "<p id='p_error'> il campo partita iva deve essere completato </p><br>";
+      $flag = true;
+    }else{
+      echo "la partita iva che hai inserito è: ".$_POST['p_iva']."<br>";
+    }
+
+    if(empty($_POST['cod_articolo'])){
+      echo "<p id='p_error'> il campo codice articolo deve essere completato </p><br>";
+      $flag = true;
+    }else{
+      echo "IL codice dell'articolo che hai inserito è: ".$_POST['cod_articolo']."<br>";
+    }
+
+    if(empty($_POST['data_acquisto'])){
+      echo "<p id='p_error'> il campo Data Acquisto deve essere completato </p><br>";
+      $flag = true;
+    }else{
+      echo "La data di acquisto che hai inserito è: ".$_POST['data_acquisto']."<br>";
+    }
+
+    if(empty($_POST['prezzo'])){
+      echo "<p id='p_error'> il campo Prezzo deve essere completato </p><br>";
+      $flag = true;
+    }else{
+      echo "Il prezzo che hai inserito è: ".$_POST['prezzo']."<br>";
+    }
+         if(empty($_POST['quantita'])){
+      echo "<p id='p_error'> il campo Quantità deve essere completato </p><br>";
+      $flag = true;
+    }else{
+      echo "La quantità che hai inserito è: ".$_POST['quantita']."<br>";
+    }
+        
+    if($flag==false)
+    {
+         $conn = mysqli_connect("localhost","root","","Pezzi");
 
       if(!$conn){
       die("<p id='p_error'>Connessione Fallita: " . mysqli_connect_error()." </p>");
@@ -56,6 +92,8 @@
               }
 
               mysqli_close($conn);
+    }
+     
 
       ?>
 
