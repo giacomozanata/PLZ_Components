@@ -27,7 +27,7 @@
          </div>
       </div>
       <div id="main_cf" class="main">
-         <form action="crea_fornitore.php" method="POST">
+         <form action="inserisci_prodotti2.php" method="POST">
             <p>PARTITA IVA *:</p>
             <?php
 
@@ -59,7 +59,7 @@
             <p>QUANTITA' *:</p>
             <input type="number" name="quantita"><br><br><br>
             <center><button onclick="submit"> INSERISCI PRODOTTO! </button></center>
-             
+
 
          </form>
       </div>

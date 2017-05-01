@@ -31,7 +31,31 @@
     <br><br><br><br><br>
       <?php
 
-      
+      $flag=false;
+
+      $conn = mysqli_connect("localhost","root","","Pezzi");
+
+      if(!$conn){
+      die("<p id='p_error'>Connessione Fallita: " . mysqli_connect_error()." </p>");
+      }else{
+      echo "<p id='p_insert'> connessione con il database avvenuta con successo! </p>";
+      }
+
+      echo "Carico i dati nel database...<br>";
+
+      $sql="INSERT INTO acquisti(Data_Acquisto, Prezzo, Quantita)
+            VALUES('".$_POST['data_acquisto']."','".$_POST['prezzo']."','".$_POST['quantita']."')";
+
+      $sql2="INSERT INTO articoli (Cod_Articolo, Quantita)
+              VALUES ('".$_POST['cod_articolo'].", '".$_POST['quantita']."')";
+
+              if (mysqli_query($conn, $sql) && mysqli_query($conn, $sql2)) {
+              echo "<p id='p_insert'> Dati inseriti con successo!!</p><br>";
+              } else {
+              echo "<p id='p_error'> Errore: " . $sql . "<br>" . mysqli_error($conn) . "</p>";
+              }
+
+              mysqli_close($conn);
 
       ?>
 
@@ -41,7 +65,7 @@
       if($flag == false){
         echo "<br><br>";
         echo "<form method='get' action='crea_fornitore.html'>";
-        echo "<button type='submit'>AGGIUNGI UN ALTRO FORNITORE</button>";
+        echo "<button type='submit'>AGGIUNGI UN ALTRO PRODOTTO</button>";
         echo "</form>";
       }else if($flag == true){
 		echo '<button onclick="goBack()">INDIETRO</button>
