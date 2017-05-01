@@ -43,11 +43,11 @@
 
       echo "Carico i dati nel database...<br>";
 
-      $sql="INSERT INTO acquisti(Data_Acquisto, Prezzo, Quantita)
-            VALUES('".$_POST['data_acquisto']."','".$_POST['prezzo']."','".$_POST['quantita']."')";
+      $sql="INSERT INTO articoli (Cod_Articolo, Quantita)
+              VALUES ('".$_POST['cod_articolo']."','".$_POST['quantita']."')";
 
-      $sql2="INSERT INTO articoli (Cod_Articolo, Quantita)
-              VALUES ('".$_POST['cod_articolo'].", '".$_POST['quantita']."')";
+      $sql2="INSERT INTO acquisti (FK_P_Iva, FK_Cod_Articolo, Data_Acquisto, Prezzo, Quantita)
+            VALUES('".$_POST['p_iva']."','".$_POST['cod_articolo']."','".$_POST['data_acquisto']."','".$_POST['prezzo']."','".$_POST['quantita']."')";
 
               if (mysqli_query($conn, $sql) && mysqli_query($conn, $sql2)) {
               echo "<p id='p_insert'> Dati inseriti con successo!!</p><br>";
