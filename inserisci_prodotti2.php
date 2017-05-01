@@ -66,21 +66,22 @@
     }else{
       echo "La quantità che hai inserito è: ".$_POST['quantita']."<br>";
     }
-        
+
     if($flag==false)
     {
          $conn = mysqli_connect("localhost","root","","Pezzi");
 
       if(!$conn){
       die("<p id='p_error'>Connessione Fallita: " . mysqli_connect_error()." </p>");
+      $flag=true;
       }else{
       echo "<p id='p_insert'> connessione con il database avvenuta con successo! </p>";
       }
 
       echo "Carico i dati nel database...<br>";
 
-      $sql="INSERT INTO articoli (Cod_Articolo, Quantita)
-              VALUES ('".$_POST['cod_articolo']."','".$_POST['quantita']."')";
+      $sql="INSERT INTO articoli (Cod_Articolo, Descrizione, Quantita)
+              VALUES ('".$_POST['cod_articolo']."','".$_POST['descrizione']."','".$_POST['quantita']."')";
 
       $sql2="INSERT INTO acquisti (FK_P_Iva, FK_Cod_Articolo, Data_Acquisto, Prezzo, Quantita)
             VALUES('".$_POST['p_iva']."','".$_POST['cod_articolo']."','".$_POST['data_acquisto']."','".$_POST['prezzo']."','".$_POST['quantita']."')";
@@ -89,11 +90,12 @@
               echo "<p id='p_insert'> Dati inseriti con successo!!</p><br>";
               } else {
               echo "<p id='p_error'> Errore: " . $sql . "<br>" . mysqli_error($conn) . "</p>";
+              $flag=true;
               }
 
               mysqli_close($conn);
     }
-     
+
 
       ?>
 
@@ -102,7 +104,7 @@
     <?php
       if($flag == false){
         echo "<br><br>";
-        echo "<form method='get' action='crea_fornitore.html'>";
+        echo "<form method='get' action='inserisci_prodotti.php'>";
         echo "<button type='submit'>AGGIUNGI UN ALTRO PRODOTTO</button>";
         echo "</form>";
       }else if($flag == true){

@@ -72,6 +72,7 @@
 
       if(!$conn){
       die("<p id='p_error'>Connessione Fallita: " . mysqli_connect_error()." </p>");
+      $flag=true;
     }else{
       echo "<p id='p_insert'> connessione con il database avvenuta con successo! </p>";
     }
@@ -85,6 +86,7 @@
               echo "<p id='p_insert'>Dati inseriti con successo!!</p><br>";
               } else {
               echo "<p id='p_error'> Errore: " . $sql . "<br>" . mysqli_error($conn) . "</p>";
+              $flag=true;
               }
 
               mysqli_close($conn);

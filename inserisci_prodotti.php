@@ -26,9 +26,11 @@
             </ul>
          </div>
       </div>
+
       <div id="main_cf" class="main">
+
          <form action="inserisci_prodotti2.php" method="POST">
-            <p>PARTITA IVA *:</p>
+            <p>PARTITA IVA FORNITORE *:</p>
             <?php
 
                $conn = new mysqli('localhost', 'root', '', 'Pezzi')
@@ -52,13 +54,17 @@
                ?>
               <p>CODICE ARTICOLO *:</p>
                 <input type="text" name="cod_articolo">
-            <p>DATA ACQUISTO*:</p>
+            <p>DATA ACQUISTO *:</p>
                 <input type="date" name="data_acquisto">
-            <p>PREZZO *:</p>
+            <p>PREZZO UNITARIO *:</p>
                 <input type="text" name="prezzo">
             <p>QUANTITA' *:</p>
-            <input type="number" name="quantita"><br><br><br>
+            <input type="number" name="quantita">
+            <p>DESCRIZIONE ARTICOLO :</p>
+            <input type="text" name="descrizione">
+            <br><br><br>
             <center><button onclick="submit"> INSERISCI PRODOTTO! </button></center>
+            <br><br><br><br><br><br>
 
 
          </form>
