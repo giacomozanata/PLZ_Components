@@ -3,6 +3,9 @@
   <title>PLZCOMPONENTS</title>
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 </head>
+<style>
+.mySlides {display:none;}
+</style>
 <body>
   <link rel="stylesheet" type="text/css" href="style.css">
 
@@ -25,9 +28,29 @@
 
   </div>
 
-  <div id="main" class="main">
-    <h1>QUESTA E' LA PRIMA PAGINA</h1>
-  </div>
+
+<div class="w3-content w3-section" style="max-width:1500px">
+  <img class="mySlides" src="pexe.jpeg" style="width:100%">
+  <img class="mySlides" src="pex.jpeg" style="width:100%">
+  <img class="mySlides" src="road.jpeg" style="width:100%">
+</div>
+    
+<script>
+var myIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";  
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}    
+    x[myIndex-1].style.display = "block";  
+    setTimeout(carousel, 2000); 
+}
+</script>
 
   <div id="footer" class="footer">
     <p id="fp"> Sviluppato da Zanata Giacomo, Cavaglia' Lorenzo e De Nunzio Pietro<p>
