@@ -17,7 +17,7 @@
                <li>
                <li><a href="inserisci_prodotti.php">INSERISCI PRODOTTI</a>
                <li>
-               <li><a href="#">VENDI PRODOTTI</a>
+               <li><a href="vendi_prodotti.php">VENDI PRODOTTI</a>
                <li>
                <li><a href="crea_fornitore.html">CREA FORNITORE</a>
                <li>
