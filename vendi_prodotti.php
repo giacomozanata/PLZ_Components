@@ -51,13 +51,14 @@
 
                echo "</select>";
                mysqli_free_result($result);
-             
+             mysqli_close($conn);
                ?>
 
               <p>CODICE ARTICOLO ACQUISTATO *:</p>
               <?php
 
-                
+                 $conn = new mysqli('localhost', 'root', '', 'Pezzi')
+                 or die ('Non riesco a collegarmi al database');
 
                  $result = $conn->query("select FK_Cod_Articolo, Descrizione from cliente, articolo WHERE articoli.Cod_Articolo=Vendite.FK_Cod_Articolo");
 
