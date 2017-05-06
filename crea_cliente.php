@@ -32,7 +32,19 @@
       <?php
 
       $flag = false;
-
+        
+      function test_input($data) {
+		$data = trim($data);
+		$data = stripcslashes($data);
+		$data = htmlspecialchars($data);
+		return $data;
+	}
+        
+        $Codice_Fiscale = isset($_POST['Codice_Fiscale']) ? test_input($_POST['Codice_Fiscale']) : null;
+        $nome_o_ragione_sociale = isset($_POST['nome_o_ragione_sociale']) ? test_input($_POST['nome_o_ragione_sociale']) : null;
+        $Indirizzo = isset($_POST['Indirizzo']) ? test_input($_POST['Indirizzo']) : null;
+        $P_Iva = isset($_POST['P_Iva']) ? test_input($_POST['P_Iva']) : null;
+        $Telefono = isset($_POST['Telefono']) ? test_input($_POST['Telefono']) : null;
 
     if(empty($_POST['Codice_Fiscale'])){
       echo "<p id='p_error'> il campo codice fiscale deve essere completato </p><br>";

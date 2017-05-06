@@ -32,6 +32,19 @@
       <?php
 
       $flag=false;
+        
+      function test_input($data) {
+		$data = trim($data);
+		$data = stripcslashes($data);
+		$data = htmlspecialchars($data);
+		return $data;
+	}
+        
+    $p_iva = isset($_POST['p_iva']) ? test_input($_POST['p_iva']) : null;
+    $cod_articolo = isset($_POST['cod_articolo']) ? test_input($_POST['cod_articolo']) : null;
+    $data_acquisto = isset($_POST['data_acquisto']) ? test_input($_POST['data_acquisto']) : null;
+    $prezzo = isset($_POST['prezzo']) ? test_input($_POST['prezzo']) : null;
+    $quantita = isset($_POST['quantita']) ? test_input($_POST['quantita']) : null;
 
     if(empty($_POST['p_iva'])){
       echo "<p id='p_error'> il campo partita iva deve essere completato </p><br>";

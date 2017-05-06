@@ -33,7 +33,18 @@
 
 
       $flag = false;
-
+        
+      function test_input($data) {
+		$data = trim($data);
+		$data = stripcslashes($data);
+		$data = htmlspecialchars($data);
+		return $data;
+	}
+        
+    $p_iva = isset($_POST['p_iva']) ? test_input($_POST['p_iva']) : null;
+    $rag_soc = isset($_POST['rag_soc']) ? test_input($_POST['rag_soc']) : null;
+    $Indirizzo = isset($_POST['Indirizzo']) ? test_input($_POST['Indirizzo']) : null;
+    $Telefono = isset($_POST['Telefono']) ? test_input($_POST['Telefono']) : null;
 
     if(empty($_POST['p_iva'])){
       echo "<p id='p_error'> il campo partita iva deve essere completato </p><br>";
