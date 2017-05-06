@@ -77,8 +77,8 @@
              mysqli_free_result($result);
              mysqli_close($conn);
                  ?>
-            <p>DATA ACQUISTO *:</p>
-                <input type="date" name="data_acquisto">
+            <p>DATA VENDITA *:</p>
+                <input type="date" name="data">
             <p>PREZZO UNITARIO *:</p>
                 <input type="text" name="prezzo">
             <p>QUANTITA' *:</p>
@@ -86,7 +86,7 @@
             <p>DESCRIZIONE ARTICOLO :</p>
             <input type="text" name="descrizione">
             <br><br><br>
-            <center><button onclick="submit"> INSERISCI PRODOTTO! </button></center>
+            <center><button onclick="submit"> VENDI PRODOTTO! </button></center>
             <br><br><br><br><br><br>
 
 
