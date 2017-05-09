@@ -81,8 +81,6 @@
                 <input type="text" name="prezzo">
             <p>QUANTITA' *:</p>
             <input type="number" name="quantita">
-            <p>DESCRIZIONE ARTICOLO :</p>
-            <input type="text" name="descrizione">
             <br><br><br>
             <center><button onclick="submit"> VENDI PRODOTTO! </button></center>
             <br><br><br><br><br><br>
