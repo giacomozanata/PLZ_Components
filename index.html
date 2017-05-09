@@ -3,9 +3,6 @@
   <title>PLZCOMPONENTS</title>
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 </head>
-<style>
-.mySlides {display:none;}
-</style>
 <body>
   <link rel="stylesheet" type="text/css" href="style.css">
 
@@ -29,11 +26,15 @@
   </div>
 
 <div class="w3-content w3-section">
-  <img class="mySlides" src="pexe.jpeg">
-  <img class="mySlides" src="pex.jpeg">
-  <img class="mySlides" src="road.jpeg">
+  <img class="mySlides" src="resources/pexe.jpeg">
+  <img class="mySlides" src="resources/pex.jpeg">
+  <img class="mySlides" src="resources/road.jpeg">
+  <img class="mySlides" src="resources/car_engine.jpeg">
+  <img class="mySlides" src="resources/car_factory_b&w.jpeg">
+  <img class="mySlides" src="resources/fiat-500-engine.jpg">
+  <img class="mySlides" src="resources/mechanic_vw_beetle.jpg">
 </div>
-    
+
 <script>
 var myIndex = 0;
 carousel();
@@ -42,12 +43,12 @@ function carousel() {
     var i;
     var x = document.getElementsByClassName("mySlides");
     for (i = 0; i < x.length; i++) {
-       x[i].style.display = "none";  
+       x[i].style.display = "none";
     }
     myIndex++;
-    if (myIndex > x.length) {myIndex = 1}    
-    x[myIndex-1].style.display = "block";  
-    setTimeout(carousel, 2000); 
+    if (myIndex > x.length) {myIndex = 1}
+    x[myIndex-1].style.display = "block";
+    setTimeout(carousel, 2000);
 }
 </script>
 

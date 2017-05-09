@@ -51,23 +51,21 @@
 
                echo "</select>";
                mysqli_free_result($result);
-             mysqli_close($conn);
                ?>
+
+               <input type="submit" name="ac" value="AGGIUNGI CLIENTE" />
 
               <p>CODICE ARTICOLO ACQUISTATO *:</p>
               <?php
 
-                 $conn = new mysqli('localhost', 'root', '', 'Pezzi')
-                 or die ('Non riesco a collegarmi al database');
-
-                 $result = $conn->query("select FK_Cod_Articolo, Descrizione from cliente, articolo WHERE articoli.Cod_Articolo=Vendite.FK_Cod_Articolo");
+                 $result = $conn->query("select Cod_Articolo, Descrizione from articoli");
 
                  echo "<select name='Cod_Articolo'>";
 
                  while ($row = $result->fetch_assoc()) {
 
                            unset($cod_articolo);
-                           $cod_art = $row['FK_Cod_Articolo'];
+                           $cod_art = $row['Cod_Articolo'];
                            $desc = $row['Descrizione'];
                            echo '<option value="'.$cod_art.'">'.$cod_art.', '.$desc.'</option>';
 
