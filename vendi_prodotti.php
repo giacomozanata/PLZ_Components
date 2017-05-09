@@ -53,6 +53,8 @@
                mysqli_free_result($result);
                ?>
 
+               <input type="submit" name="ac" value="AGGIUNGI CLIENTE" />
+
               <p>CODICE ARTICOLO ACQUISTATO *:</p>
               <?php
 
