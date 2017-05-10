@@ -32,94 +32,106 @@
     <?php
 
       $flag=false;
-
+      /*
+      ++++++++++++++++++++
+      ++++++++++++++++++++
+      ++++Gian Was Here+++
+      ++++++++++++++++++++
+      ++++++++++++++++++++
+      */
       if(isset($_POST['ac'])) {
         header("Location: " . rtrim(dirname($_SERVER['PHP_SELF']), '/\\') . "/crea_cliente.html");
         die();
       }
 
       function test_input($data) {
-      $data = trim($data);
-      $data = stripcslashes($data);
-      $data = htmlspecialchars($data);
-      return $data;
+        $data = trim($data);
+        $data = stripcslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
       }
 
       $data_vendita = isset($_POST['data']) ? test_input($_POST['data']) : null;
       $prezzo = isset($_POST['prezzo']) ? test_input($_POST['prezzo']) : null;
       $quantita = isset($_POST['quantita']) ? test_input($_POST['quantita']) : null;
 
-      if($_POST['Codice_Fiscale']== '' ){
+      if(!isset($_POST['Codice_Fiscale'])) {
         echo "<p id='p_error'> Il campo del codice fiscale del cliente deve essere completato </p><br>";
         $flag=true;
-      }else{
-        echo "Il codice fiscale che hai inserito è: ".$_POST['Codice_Fiscale']."<br>";
+      } else {
+        echo "Il codice fiscale che hai inserito è: ".test_input($_POST['Codice_Fiscale'])."<br>";
       }
 
-      if($_POST['Cod_Articolo']== '' ){
+      if(!isset($_POST['Cod_Articolo'])) {
         echo "<p id='p_error'> Il campo del codice dell' articolo deve essere completato </p><br>";
         $flag=true;
-      }else{
+      } else {
         echo "Il codice dell'articolo che hai inserito è: ".$_POST['Cod_Articolo']."<br>";
       }
 
-      if(empty($_POST['data'])){
+      if(!isset($_POST['data'])) {
         echo "<p id='p_error'> Il campo della data di vendita deve essere completato </p><br>";
         $flag=true;
-      }else{
+      } else {
         echo "La data di vendita che hai inserito è: ".$_POST['data']."<br>";
       }
 
-      if(empty($_POST['prezzo'])){
+      if(!isset($_POST['prezzo'])) {
         echo "<p id='p_error'> Il campo del prezzo unitario deve essere completato </p><br>";
         $flag=true;
-      }else{
+      } else {
         echo "Il prezzo dell' articolo che hai inserito è: ".$_POST['prezzo']."<br>";
       }
 
-      if(empty($_POST['quantita'])){
+      if(!isset($_POST['quantita'])) {
         echo "<p id='p_error'> Il campo della quantita' deve essere completato </p><br>";
         $flag=true;
-      }else{
+      } else {
         echo "La quantità che hai inserito è: ".$_POST['quantita']."<br>";
       }
 
 
-      if($flag==false)
-      {
+      if($flag==false) {
            $conn = mysqli_connect("localhost","root","","Pezzi");
 
-        if(!$conn){
+        if(!$conn) {
         die("<p id='p_error'>Connessione Fallita: " . mysqli_connect_error()." </p>");
         $flag=true;
-        }else{
+        } else {
         echo "<p id='p_insert'> connessione con il database avvenuta con successo! </p>";
+        }
+
+        $sql2="SELECT Quantita from articoli WHERE Cod_Articolo = '" . test_input($_POST['Cod_Articolo']) . "'";
+
+        $result = mysqli_query($conn, $sql2);
+        if(mysqli_error($conn)) {
+          $row -> mysqli_fetch_assoc($result);
+          if($row['Quantita'] < $_POST['quantita']) {
+            echo "Non ci sono abbastanza prodotti in magazzino";
+            mysqli_close($conn);
+            die();
+          } else {
+            $quantita = ($row['Quantita'] - $_POST['quantita']);
+            $sql3 = "UPDATE articoli
+                    SET Quantita = '$quantita'
+                    WHERE Cod_Articolo = '".test_input($_POST['Cod_Articolo'])."'";
+            mysqli_query($conn, $sql2);
+          }
         }
 
         echo "Carico i dati nel database...<br>";
 
         $sql="INSERT INTO vendite (FK_Cod_Articolo, FK_Codice_Fiscale, Data, Prezzo, Quantita)
-              VALUES('".$_POST['Cod_Articolo']."','".$_POST['Codice_Fiscale']."','".$_POST['data']."','".$_POST['prezzo']."','".$_POST['quantita']."')";
-
-        $sql2="SELECT Quantita from articoli WHERE Cod_Articolo = '".$_POST['Cod_Articolo']."'";
-        if($sql2<$_POST['quantità']){
-          echo "Non ci sono abbastanza prodotti in magazzino";
-        }else{
-          $quantita=($sql2-$_POST['quantita']);
-          $sql3="UPDATE articoli
-                 SET Quantita = '$quantita'
-                 WHERE Cod_Articolo = '".$_POST['Cod_Articolo']."'";
+              VALUES('".test_input($_POST['Cod_Articolo'])."','".test_input($_POST['Codice_Fiscale'])."','".test_input($_POST['data'])."','".test_input($_POST['prezzo'])."','".test_input($_POST['quantita'])."')";
+        if(!mysqli_query($conn, $sql))
+          echo "<p id='p_error'> Errore: " . $sql . "<br>" . mysqli_error($conn) . "</p>";
+        else {
+          echo "<p id='p_insert'> Dati inseriti con successo!!</p><br>";
+          $flag=true;
         }
 
-
-                if (mysqli_query($conn, $sql) && mysqli_query($conn, $sql2) && mysqli_query($conn, $sql3)) {
-                echo "<p id='p_insert'> Dati inseriti con successo!!</p><br>";
-                } else {
-                echo "<p id='p_error'> Errore: " . $sql . "<br>" . mysqli_error($conn) . "</p>";
-                $flag=true;
-                }
-
-                mysqli_close($conn);
+        mysqli_free_result($result);
+        mysqli_close($conn);
       }
 
     ?>
