@@ -60,7 +60,7 @@
 
                  $result = $conn->query("select Cod_Articolo, Descrizione from articoli");
 
-                 echo "<select name='Cod_Articolo'>";
+                 echo "<select name='Cod_Articolo' onchange='showPrezzo(document.getElementById(\"Cod_Articolo\").textContent)'>";
 
                  while ($row = $result->fetch_assoc()) {
 

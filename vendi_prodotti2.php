@@ -92,6 +92,7 @@
 
 
       if($flag==false) {
+
            $conn = mysqli_connect("localhost","root","","Pezzi");
 
         if(!$conn) {
@@ -101,29 +102,31 @@
         echo "<p id='p_insert'> connessione con il database avvenuta con successo! </p>";
         }
 
-        $sql2="SELECT Quantita from articoli WHERE Cod_Articolo = '" . test_input($_POST['Cod_Articolo']) . "'";
+        $sql = " SELECT Quantita from articoli WHERE Cod_Articolo = '" . test_input($_POST['Cod_Articolo']) . "'";
 
-        $result = mysqli_query($conn, $sql2);
-        if(mysqli_error($conn)) {
-          $row -> mysqli_fetch_assoc($result);
+        $result = mysqli_query($conn, $sql);
+        if(!mysqli_error($conn)) {
+
+          $row = mysqli_fetch_assoc($result);
           if($row['Quantita'] < $_POST['quantita']) {
-            echo "Non ci sono abbastanza prodotti in magazzino";
+            echo "<p id='p_error'> Non ci sono abbastanza prodotti in magazzino </p>";
             mysqli_close($conn);
             die();
           } else {
             $quantita = ($row['Quantita'] - $_POST['quantita']);
-            $sql3 = "UPDATE articoli
-                    SET Quantita = '$quantita'
-                    WHERE Cod_Articolo = '".test_input($_POST['Cod_Articolo'])."'";
+            $sql2 = "UPDATE articoli
+                     SET Quantita = '$quantita'
+                     WHERE Cod_Articolo = '" . test_input($_POST['Cod_Articolo']) . "'";
             mysqli_query($conn, $sql2);
           }
         }
 
         echo "Carico i dati nel database...<br>";
 
-        $sql="INSERT INTO vendite (FK_Cod_Articolo, FK_Codice_Fiscale, Data, Prezzo, Quantita)
+        $sql3="INSERT INTO vendite (FK_Cod_Articolo, FK_Codice_Fiscale, Data, Prezzo, Quantita)
               VALUES('".test_input($_POST['Cod_Articolo'])."','".test_input($_POST['Codice_Fiscale'])."','".test_input($_POST['data'])."','".test_input($_POST['prezzo'])."','".test_input($_POST['quantita'])."')";
-        if(!mysqli_query($conn, $sql))
+
+        if(!mysqli_query($conn, $sql3))
           echo "<p id='p_error'> Errore: " . $sql . "<br>" . mysqli_error($conn) . "</p>";
         else {
           echo "<p id='p_insert'> Dati inseriti con successo!!</p><br>";
