@@ -53,18 +53,24 @@
                mysqli_free_result($result);
                ?>
 
+               <input type="submit" name="ac" value="AGGIUNGI CLIENTE" />
+
               <p>CODICE ARTICOLO ACQUISTATO *:</p>
               <?php
 
+<<<<<<< HEAD
                  
                  $result = $conn->query("select FK_Cod_Articolo, Descrizione from articolo");
+=======
+                 $result = $conn->query("select Cod_Articolo, Descrizione from articoli");
+>>>>>>> origin/master
 
-                 echo "<select name='Cod_Articolo'>";
+                 echo "<select name='Cod_Articolo' onchange='showPrezzo(document.getElementById(\"Cod_Articolo\").textContent)'>";
 
                  while ($row = $result->fetch_assoc()) {
 
                            unset($cod_articolo);
-                           $cod_art = $row['FK_Cod_Articolo'];
+                           $cod_art = $row['Cod_Articolo'];
                            $desc = $row['Descrizione'];
                            echo '<option value="'.$cod_art.'">'.$cod_art.', '.$desc.'</option>';
 
@@ -74,16 +80,14 @@
              mysqli_free_result($result);
              mysqli_close($conn);
                  ?>
-            <p>DATA ACQUISTO *:</p>
-                <input type="date" name="data_acquisto">
+            <p>DATA VENDITA *:</p>
+                <input type="date" name="data">
             <p>PREZZO UNITARIO *:</p>
                 <input type="text" name="prezzo">
             <p>QUANTITA' *:</p>
             <input type="number" name="quantita">
-            <p>DESCRIZIONE ARTICOLO :</p>
-            <input type="text" name="descrizione">
             <br><br><br>
-            <center><button onclick="submit"> INSERISCI PRODOTTO! </button></center>
+            <center><button onclick="submit"> VENDI PRODOTTO! </button></center>
             <br><br><br><br><br><br>
 
 
