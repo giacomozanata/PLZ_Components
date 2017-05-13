@@ -58,7 +58,12 @@
               <p>CODICE ARTICOLO ACQUISTATO *:</p>
               <?php
 
+<<<<<<< HEAD
+                 
+                 $result = $conn->query("select FK_Cod_Articolo, Descrizione from articolo");
+=======
                  $result = $conn->query("select Cod_Articolo, Descrizione from articoli");
+>>>>>>> origin/master
 
                  echo "<select name='Cod_Articolo' onchange='showPrezzo(document.getElementById(\"Cod_Articolo\").textContent)'>";
 
