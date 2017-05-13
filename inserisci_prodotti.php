@@ -21,7 +21,7 @@
                <li>
                <li><a href="crea_fornitore.html">CREA FORNITORE</a>
                <li>
-               <li><a href="#">CERCA</a>
+               <li><a href="operazioni.html">OPERAZIONI</a>
                <li>
             </ul>
          </div>

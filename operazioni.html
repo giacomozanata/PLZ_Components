@@ -1,0 +1,85 @@
+<html>
+<head>
+  <title>PLZCOMPONENTS</title>
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+</head>
+<body>
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+  <div id="header" class="header">
+
+    <div id="logo">
+     <a href="index.html"> <img src="logo.png"> </a>
+    </div>
+
+    <div id="menu">
+      <ul>
+        <li><a href="index.html">HOME</a><li>
+        <li><a href="crea_cliente.html">CREA CLIENTE</a><li>
+        <li><a href="inserisci_prodotti.php">INSERISCI PRODOTTI</a><li>
+        <li><a href="vendi_prodotti.php">VENDI PRODOTTI</a><li>
+        <li><a href="crea_fornitore.html">CREA FORNITORE</a><li>
+        <li><a href="operazioni.php">OPERAZIONI</a><li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="main">
+
+  <form action="cerca.php" method="POST">
+
+    <p> CERCA: </p>
+    <select name="search">
+      <option value="cliente"> CLIENTE </option>
+      <option value="fornitore"> FORNITORE </option>
+      <option value="vendita"> VENDITA </option>
+      <option value="inserisci"> INSERIMENTO </option>
+    </select>
+    &nbsp &nbsp
+    <input type="submit" value="CERCA!">
+
+  </form>
+
+  <br><br>
+
+  <form action="modifica.php" method="POST">
+
+    <p> MODIFICA: </p>
+    <select name="modify">
+      <option value="cliente"> CLIENTE </option>
+      <option value="fornitore"> FORNITORE </option>
+      <option value="vendita"> VENDITA </option>
+      <option value="inserisci"> INSERIMENTO </option>
+    </select>
+    &nbsp &nbsp
+    <input type="submit" value="INVIA">
+
+  </form>
+
+  <br><br>
+
+  <form action="elimina.php" method="POST">
+
+    <p> ELIMINA: </p>
+    <select name="delete">
+      <option value="cliente"> CLIENTE </option>
+      <option value="fornitore"> FORNITORE </option>
+      <option value="vendita"> VENDITA </option>
+      <option value="inserisci"> INSERIMENTO </option>
+    </select>
+    &nbsp &nbsp
+    <input type="submit" value="INVIA">
+
+  </form>
+
+  </div>
+
+  <br><br><br><br>
+
+  <div id="footer" class="footer">
+    <p id="fp"> Sviluppato da Zanata Giacomo, Cavaglia' Lorenzo e De Nunzio Pietro<p>
+  </div>
+
+</body>
+</html>

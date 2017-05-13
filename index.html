@@ -19,7 +19,7 @@
         <li><a href="inserisci_prodotti.php">INSERISCI PRODOTTI</a><li>
         <li><a href="vendi_prodotti.php">VENDI PRODOTTI</a><li>
         <li><a href="crea_fornitore.html">CREA FORNITORE</a><li>
-        <li><a href="#">CERCA</a><li>
+        <li><a href="operazioni.html">OPERAZIONI</a><li>
       </ul>
     </div>
 
