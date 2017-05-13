@@ -17,11 +17,11 @@
                <li>
                <li><a href="inserisci_prodotti.php">INSERISCI PRODOTTI</a>
                <li>
-               <li><a href="#">VENDI PRODOTTI</a>
+               <li><a href="vendiprodotti.php">VENDI PRODOTTI</a>
                <li>
                <li><a href="crea_fornitore.html">CREA FORNITORE</a>
                <li>
-               <li><a href="#">CERCA</a>
+               <li><a href="#">OPERAZIONI</a>
                <li>
             </ul>
          </div>

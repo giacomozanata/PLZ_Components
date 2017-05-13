@@ -17,7 +17,7 @@
         <li><a href="index.html">HOME</a><li>
         <li><a href="crea_cliente.html">CREA CLIENTE</a><li>
         <li><a href="inserisci_prodotti.php">INSERISCI PRODOTTI</a><li>
-        <li><a href="#">VENDI PRODOTTI</a><li>
+        <li><a href="vendi_prodotti.php">VENDI PRODOTTI</a><li>
         <li><a href="crea_fornitore.html">CREA FORNITORE</a><li>
         <li><a href="#">CERCA</a><li>
       </ul>
@@ -32,14 +32,14 @@
       <?php
 
       $flag=false;
-        
+
       function test_input($data) {
 		$data = trim($data);
 		$data = stripcslashes($data);
 		$data = htmlspecialchars($data);
 		return $data;
 	}
-        
+
     $p_iva = isset($_POST['p_iva']) ? test_input($_POST['p_iva']) : null;
     $cod_articolo = isset($_POST['cod_articolo']) ? test_input($_POST['cod_articolo']) : null;
     $data_acquisto = isset($_POST['data_acquisto']) ? test_input($_POST['data_acquisto']) : null;
