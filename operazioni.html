@@ -27,15 +27,20 @@
 
   <div class="main">
 
+    <br><br>
+
   <form action="cerca.php" method="POST">
 
-    <p> CERCA: </p>
+    CERCA:
     <select name="search">
       <option value="cliente"> CLIENTE </option>
-      <option value="fornitore"> FORNITORE </option>
-      <option value="vendita"> VENDITA </option>
-      <option value="inserisci"> INSERIMENTO </option>
+      <option value="fornitori"> FORNITORE </option>
+      <option value="vendite"> VENDITA </option>
+      <option value="acquisti"> INSERIMENTO </option>
     </select>
+    &nbsp &nbsp
+    QUERY DI RICERCA:
+    <input type="text" name="search_query">
     &nbsp &nbsp
     <input type="submit" value="CERCA!">
 
@@ -45,13 +50,16 @@
 
   <form action="modifica.php" method="POST">
 
-    <p> MODIFICA: </p>
+    MODIFICA:
     <select name="modify">
       <option value="cliente"> CLIENTE </option>
-      <option value="fornitore"> FORNITORE </option>
-      <option value="vendita"> VENDITA </option>
-      <option value="inserisci"> INSERIMENTO </option>
+      <option value="fornitori"> FORNITORE </option>
+      <option value="vendite"> VENDITA </option>
+      <option value="acquisti"> INSERIMENTO </option>
     </select>
+    &nbsp &nbsp
+    QUERY DI RICERCA:
+    <input type="text" name="modify_query">
     &nbsp &nbsp
     <input type="submit" value="INVIA">
 
@@ -61,13 +69,16 @@
 
   <form action="elimina.php" method="POST">
 
-    <p> ELIMINA: </p>
+    ELIMINA:
     <select name="delete">
       <option value="cliente"> CLIENTE </option>
-      <option value="fornitore"> FORNITORE </option>
-      <option value="vendita"> VENDITA </option>
-      <option value="inserisci"> INSERIMENTO </option>
+      <option value="fornitori"> FORNITORE </option>
+      <option value="vendite"> VENDITA </option>
+      <option value="acquisti"> INSERIMENTO </option>
     </select>
+    &nbsp &nbsp
+    QUERY DI RICERCA:
+    <input type="text" name="delete_query">
     &nbsp &nbsp
     <input type="submit" value="INVIA">
 

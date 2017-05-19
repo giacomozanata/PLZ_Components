@@ -82,6 +82,7 @@
 
     if($flag==false)
     {
+
          $conn = mysqli_connect("localhost","root","","Pezzi");
 
       if(!$conn){
@@ -93,13 +94,35 @@
 
       echo "Carico i dati nel database...<br>";
 
-      $sql="INSERT INTO articoli (Cod_Articolo, Descrizione, Quantita)
-              VALUES ('".$_POST['cod_articolo']."','".$_POST['descrizione']."','".$_POST['quantita']."')";
+      $sql = "SELECT Cod_Articolo FROM articoli";
+      $result = mysqli_query($conn, $sql);
 
-      $sql2="INSERT INTO acquisti (FK_P_Iva, FK_Cod_Articolo, Data_Acquisto, Prezzo, Quantita)
+      if(mysqli_num_rows($result) > 0){
+      while($row = mysqli_fetch_assoc($result)) {
+        if($row['Cod_Articolo'] == $_POST['cod_articolo']){
+
+          $sql5="SELECT Quantita from articoli WHERE Cod_Articolo = '" .$_POST['Cod_Articolo']. "'";
+          $result2 = mysqli_query($conn, $sql5);
+
+          if(!mysqli_error($conn)) {
+            $row2 = mysqli_fetch_assoc($result2);
+            $quantita = ($row2['Quantita'] + $_POST['quantita']);
+            $sql2 = "UPDATE articoli
+                     SET Quantita = '$quantita'
+                     WHERE Cod_Articolo = '" .$_POST['Cod_Articolo']. "'";
+            mysqli_query($conn, $sql2);
+          }
+
+      }else{
+      $sql3="INSERT INTO articoli (Cod_Articolo, Descrizione, Quantita)
+              VALUES ('".$_POST['cod_articolo']."','".$_POST['descrizione']."','".$_POST['quantita']."')";
+            }
+          }}
+
+      $sql4="INSERT INTO acquisti (FK_P_Iva, FK_Cod_Articolo, Data_Acquisto, Prezzo, Quantita)
             VALUES('".$_POST['p_iva']."','".$_POST['cod_articolo']."','".$_POST['data_acquisto']."','".$_POST['prezzo']."','".$_POST['quantita']."')";
 
-              if (mysqli_query($conn, $sql) && mysqli_query($conn, $sql2)) {
+              if (mysqli_query($conn, $sql4)) {
               echo "<p id='p_insert'> Dati inseriti con successo!!</p><br>";
               } else {
               echo "<p id='p_error'> Errore: " . $sql . "<br>" . mysqli_error($conn) . "</p>";
@@ -108,6 +131,7 @@
 
               mysqli_close($conn);
     }
+
 
 
       ?>
