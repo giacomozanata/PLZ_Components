@@ -19,7 +19,7 @@
         <li><a href="inserisci_prodotti.php">INSERISCI PRODOTTI</a><li>
         <li><a href="vendi_prodotti.php">VENDI PRODOTTI</a><li>
         <li><a href="crea_fornitore.html">CREA FORNITORE</a><li>
-        <li><a href="operazioni.php">OPERAZIONI</a><li>
+        <li><a href="operazioni.html">OPERAZIONI</a><li>
       </ul>
     </div>
 
@@ -30,7 +30,52 @@
     <?php
 
     $table = $_POST['search'];
+    $col = null;
+    switch ($_POST['search']) {
+      case 'acquisti':
+        $col = 'Data_Acquisto LIKE "%' . $_POST['search_query'] . '%" OR
+                FK_P_Iva LIKE "%' . $_POST['search_query'] . '%" OR
+                (acquisti.FK_Cod_Articolo LIKE articoli.Cod_Articolo AND
+                articoli.Descrizione LIKE "%' . $_POST['search_query'] . '%")';
+        $tmp = $table;
+        $table = $table . ", articoli";
+        break;
 
+        case 'fornitori':
+          $col = 'P_Iva LIKE "%' . $_POST['search_query'] . '%" OR
+                  Ragione_Sociale LIKE "%' . $_POST['search_query'] . '%" OR
+                  Indirizzo LIKE "%' . $_POST['search_query'] . '%" OR
+                  Telefono LIKE "%' . $_POST['search_query'] . '%"';
+          $tmp = $table;
+          break;
+
+          case 'cliente':
+            $col = 'Codice_Fiscale LIKE "%' . $_POST['search_query'] . '%" OR
+                    Nome_O_Ragione_Sociale LIKE "%' . $_POST['search_query'] . '%" OR
+                    Indirizzo LIKE "%' . $_POST['search_query'] . '%" OR
+                    P_Iva LIKE "%' . $_POST['search_query'] . '%" OR
+                    Telefono LIKE "%' . $_POST['search_query'] . '%"';
+            $tmp = $table;
+            break;
+
+            case 'vendite':
+              $col = 'vendite.FK_Cod_Articolo LIKE "%' . $_POST['search_query'] . '%" OR
+                      (vendite.FK_Cod_Articolo LIKE articoli.Cod_Articolo AND
+                      articoli.Descrizione LIKE "%' . $_POST['search_query'] . '%") OR
+                      vendite.FK_Codice_Fiscale LIKE "%' . $_POST['search_query'] . '%" OR
+                      (vendite.FK_Codice_Fiscale LIKE cliente.Codice_Fiscale AND
+                      cliente.Codice_Fiscale LIKE "%' . $_POST['search_query'] . '%") OR
+                      Data LIKE "%' . $_POST['search_query'] . '%" OR
+                      Prezzo LIKE "%' . $_POST['search_query'] . '%" OR
+                      vendite.Quantita LIKE "%' . $_POST['search_query'] . '%"';
+              $tmp = $table;
+              $table = $table . ", cliente, articoli";
+              break;
+
+      default:
+
+        break;
+    }
     $conn = mysqli_connect("localhost","root","","Pezzi");
 
     if(!$conn){
@@ -41,36 +86,37 @@
 
     echo "Cerco i dati nel database...<br>";
 
-    $sql = "SELECT * FROM $table";
+    echo "<br><hr><br>";
+
+    $sql = "SELECT * FROM $table WHERE $col";
     if($result = mysqli_query($conn, $sql)){
     if(mysqli_num_rows($result) > 0){
-      echo "<table>";
-      if($table = "acquisti"){
+      echo "<center>";
+      echo "<table class='table_default'>";
+      if($tmp == "acquisti"){
         echo "<tr>";
-            echo "<th>ID_Acquisto</th>";
-            echo "<th>FK_P_Iva</th>";
-            echo "<th>FK_Cod_Articolo</th>";
-            echo "<th>data_acquisto</th>";
-            echo "<th>prezzo</th>";
-            echo "<th>quantita</th>";
+            echo "<th>PARTITA IVA FORNITORE</th>";
+            echo "<th>CODICE ARTICOLO ACQUISTATO</th>";
+            echo "<th>DATA DI ACQUISTO</th>";
+            echo "<th>PREZZO</th>";
+            echo "<th>QUANTITA'</th>";
         echo "</tr>";
         while($row = mysqli_fetch_array($result)){
             echo "<tr>";
-                echo "<td>" . $row['ID_Acquisto'] . "</td>";
                 echo "<td>" . $row['FK_P_Iva'] . "</td>";
                 echo "<td>" . $row['FK_Cod_Articolo'] . "</td>";
-                echo "<td>" . $row['data_acquisto'] . "</td>";
-                echo "<td>" . $row['prezzo'] . "</td>";
-                echo "<td>" . $row['quantita'] . "</td>";
+                echo "<td>" . $row['Data_Acquisto'] . "</td>";
+                echo "<td>" . $row['Prezzo'] . "</td>";
+                echo "<td>" . $row['Quantita'] . "</td>";
             echo "</tr>";
         }
       }
-      if($table = "fornitori"){
+      if($tmp == "fornitori"){
         echo "<tr>";
-            echo "<th>P_Iva</th>";
-            echo "<th>Ragione Sociale</th>";
-            echo "<th>Indirizzo</th>";
-            echo "<th>Telefono</th>";
+            echo "<th>PARTITA IVA</th>";
+            echo "<th>RAGIONE SOCIALE AZIENDA</th>";
+            echo "<th>INDIRIZZO AZIENDA</th>";
+            echo "<th>TELEFONO AZIENDA</th>";
         echo "</tr>";
         while($row = mysqli_fetch_array($result)){
             echo "<tr>";
@@ -81,13 +127,13 @@
             echo "</tr>";
         }
       }
-      if($table = "cliente"){
+      if($tmp == "cliente"){
         echo "<tr>";
-            echo "<th>Codice Fiscale</th>";
-            echo "<th>Nome o Ragione Sociale</th>";
-            echo "<th>Indirizzo</th>";
-            echo "<th>P_Iva</th>";
-            echo "<th>Telefono</th>";
+            echo "<th>CODICE FISCALE</th>";
+            echo "<th>NOME O RAGIONE SOCIALE</th>";
+            echo "<th>INDIRIZZO</th>";
+            echo "<th>PARTITA IVA</th>";
+            echo "<th>TELEFONO</th>";
         echo "</tr>";
         while($row = mysqli_fetch_array($result)){
             echo "<tr>";
@@ -99,27 +145,26 @@
             echo "</tr>";
         }
       }
-      if($table = "vendite"){
+      if($tmp == "vendite"){
         echo "<tr>";
-            echo "<th>Id Vendita</th>";
-            echo "<th>FK Codice Articolo</th>";
-            echo "<th>FK Codice Fiscale</th>";
-            echo "<th>Data</th>";
-            echo "<th>Prezzo</th>";
-            echo "<th>Quantità</th>";
+            echo "<th>CODICE ARTICOLO</th>";
+            echo "<th>CODICE FISCALE CLIENTE</th>";
+            echo "<th>DATA VENDITA</th>";
+            echo "<th>PREZZO UNITARIO</th>";
+            echo "<th>QUANTITA'</th>";
         echo "</tr>";
         while($row = mysqli_fetch_array($result)){
             echo "<tr>";
-                echo "<td>" . $row['id_vendita'] . "</td>";
                 echo "<td>" . $row['FK_Cod_Articolo'] . "</td>";
-                echo "<td>" . $row['FK_Cod_Fiscale'] . "</td>";
-                echo "<td>" . $row['data'] . "</td>";
-                echo "<td>" . $row['prezzo'] . "</td>";
-                echo "<td>" . $row['quantita'] . "</td>";
+                echo "<td>" . $row['FK_Codice_Fiscale'] . "</td>";
+                echo "<td>" . $row['Data'] . "</td>";
+                echo "<td>" . $row['Prezzo'] . "</td>";
+                echo "<td>" . $row['Quantita'] . "</td>";
             echo "</tr>";
         }
       }
         echo "</table>";
+        echo "</center>";
         mysqli_free_result($result);
     } else{
         echo "No records matching your query were found.";
@@ -129,11 +174,21 @@
 }
 
 mysqli_close($conn);
+
+  echo "<br><br>";
+
+  echo '<button onclick="goBack()">INDIETRO</button>
+    <script>
+      function goBack() {
+        window.history.back();
+      }
+      </script>';
+
 ?>
 
   </div>
 
-  <br><br><br><br>
+  <br><br><br><br><br><br>
 
   <div id="footer" class="footer">
     <p id="fp"> Sviluppato da Zanata Giacomo, Cavaglia' Lorenzo e De Nunzio Pietro<p>
