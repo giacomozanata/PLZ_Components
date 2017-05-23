@@ -45,6 +45,7 @@
     $data_acquisto = isset($_POST['data_acquisto']) ? test_input($_POST['data_acquisto']) : null;
     $prezzo = isset($_POST['prezzo']) ? test_input($_POST['prezzo']) : null;
     $quantita = isset($_POST['quantita']) ? test_input($_POST['quantita']) : null;
+    $descrizione = isset($_POST['descrizione']) ? test_input($_POST['descrizione']) : null;
 
     if(empty($_POST['p_iva'])){
       echo "<p id='p_error'> il campo partita iva deve essere completato </p><br>";
@@ -73,17 +74,21 @@
     }else{
       echo "Il prezzo che hai inserito è: ".$_POST['prezzo']."<br>";
     }
-         if(empty($_POST['quantita'])){
+
+    if(empty($_POST['quantita'])){
       echo "<p id='p_error'> il campo Quantità deve essere completato </p><br>";
       $flag = true;
     }else{
       echo "La quantità che hai inserito è: ".$_POST['quantita']."<br>";
     }
 
-    if($flag==false)
-    {
+    if(!empty($_POST['descrizione'])){
+      echo "La descrizione che hai inserito è: ".$_POST['descrizione']."<br>";
+    }
 
-         $conn = mysqli_connect("localhost","root","","Pezzi");
+    if($flag==false){
+
+      $conn = mysqli_connect("localhost","root","","Pezzi");
 
       if(!$conn){
       die("<p id='p_error'>Connessione Fallita: " . mysqli_connect_error()." </p>");
@@ -95,48 +100,63 @@
       echo "Carico i dati nel database...<br>";
 
       $sql = "SELECT Cod_Articolo FROM articoli";
-      $result = mysqli_query($conn, $sql);
+      $result_sql = mysqli_query($conn, $sql);
 
-      if(mysqli_num_rows($result) > 0){
-      while($row = mysqli_fetch_assoc($result)) {
-        if($row['Cod_Articolo'] == $_POST['cod_articolo']){
+      if(mysqli_num_rows($result_sql) > 0){
 
-          $sql5="SELECT Quantita from articoli WHERE Cod_Articolo = '" .$_POST['Cod_Articolo']. "'";
-          $result2 = mysqli_query($conn, $sql5);
+        while($row = mysqli_fetch_assoc($result_sql)){
 
-          if(!mysqli_error($conn)) {
-            $row2 = mysqli_fetch_assoc($result2);
-            $quantita = ($row2['Quantita'] + $_POST['quantita']);
-            $sql2 = "UPDATE articoli
-                     SET Quantita = '$quantita'
-                     WHERE Cod_Articolo = '" .$_POST['Cod_Articolo']. "'";
-            mysqli_query($conn, $sql2);
-          }
+          if($row['Cod_Articolo'] == $_POST['cod_articolo']){
 
-      }else{
-      $sql3="INSERT INTO articoli (Cod_Articolo, Descrizione, Quantita)
-              VALUES ('".$_POST['cod_articolo']."','".$_POST['descrizione']."','".$_POST['quantita']."')";
-            }
-          }}
+            $sql2="SELECT Quantita from articoli WHERE Cod_Articolo = '" .$_POST['Cod_Articolo']. "'";
+            $result_sql2 = mysqli_query($conn, $sql2);
 
-      $sql4="INSERT INTO acquisti (FK_P_Iva, FK_Cod_Articolo, Data_Acquisto, Prezzo, Quantita)
-            VALUES('".$_POST['p_iva']."','".$_POST['cod_articolo']."','".$_POST['data_acquisto']."','".$_POST['prezzo']."','".$_POST['quantita']."')";
+            if(!mysqli_error($conn)) {
 
-              if (mysqli_query($conn, $sql4)) {
-              echo "<p id='p_insert'> Dati inseriti con successo!!</p><br>";
-              } else {
-              echo "<p id='p_error'> Errore: " . $sql . "<br>" . mysqli_error($conn) . "</p>";
-              $flag=true;
+              $row2 = mysqli_fetch_assoc($result_sql2);
+              $quantita = ($row2['Quantita'] + $_POST['quantita']);
+              $sql3 = "UPDATE articoli
+                       SET Quantita = '$quantita'
+                       WHERE Cod_Articolo = '" .$_POST['Cod_Articolo']. "'";
+              $result_sql3 = mysqli_query($conn, $sql3);
+              
+              echo "<p id='p_insert'> Modifico la quantità dell' oggetto: '$descrizione' aggiungendo: '$quantita' </p>";
+
+
               }
 
-              mysqli_close($conn);
-    }
+            }else{
+
+              $sql4="INSERT INTO articoli (Cod_Articolo, Descrizione, Quantita)
+                    VALUES ('".$_POST['cod_articolo']."','".$_POST['descrizione']."','".$_POST['quantita']."')";
 
 
+              $sql5="INSERT INTO acquisti (FK_P_Iva, FK_Cod_Articolo, Data_Acquisto, Prezzo, Quantita)
+                    VALUES('".$_POST['p_iva']."','".$_POST['cod_articolo']."','".$_POST['data_acquisto']."','".$_POST['prezzo']."','".$_POST['quantita']."')";
 
-      ?>
+                      if (mysqli_query($conn, $sql4) && mysqli_query($conn, $sql5)) {
+                      echo "<p id='p_insert'> Dati inseriti con successo!!</p><br>";
+                      } else {
+                      echo "<p id='p_error'> Errore: " . $sql . "<br>" . mysqli_error($conn) . "</p>";
+                      $flag=true;
+                      }
 
-    </form>
+            }
+
+          }
+
+        }
+
+                mysqli_close($conn);
+
+      }
+
+
+    ?>
+
+    <br><br><br><br>
+
+  </form>
 
     <?php
       if($flag == false){
@@ -154,7 +174,6 @@
 
       }
     ?>
-
 
   </div>
 
