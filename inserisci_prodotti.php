@@ -1,3 +1,5 @@
+<?php include 'scripts/dbmanager.php'; ?>
+
 <html>
    <head>
       <title>PLZCOMPONENTS</title>
@@ -29,13 +31,14 @@
 
       <div id="main_cf" class="main">
 
-         <form action="inserisci_prodotti2.php" method="POST">
+         <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
             <p>PARTITA IVA FORNITORE *:</p>
             <?php
 
-               $conn = new mysqli('localhost', 'root', '', 'Pezzi')
+               /*$conn = new mysqli('localhost', 'root', '', 'Pezzi')
                or die ('Non riesco a collegarmi al database');
-
+*/
+               $conn = getConn();
                $result = $conn->query("select p_iva, ragione_sociale from fornitori");
 
                echo "<select name='p_iva'>";
@@ -63,12 +66,18 @@
             <p>DESCRIZIONE ARTICOLO :</p>
             <input type="text" name="descrizione">
             <br><br><br>
+            <input type="hidden" value="true" name="flag">
             <center><button onclick="submit"> INSERISCI PRODOTTO! </button></center>
             <br><br><br><br><br><br>
-
-
          </form>
+         <?php
+            $flag = isset($_POST['flag']);
+            if(!$flag) {
+
+            }
+         ?>
       </div>
+
       <div id="footer" class="footer">
          <p id="fp"> Sviluppato da Zanata Giacomo, Cavaglia' Lorenzo e De Nunzio Pietro</p>
       </div>
