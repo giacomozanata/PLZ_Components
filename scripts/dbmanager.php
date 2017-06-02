@@ -1,7 +1,7 @@
 <?php
-  
+
   /*
-   * @author: Gianvito Bono
+   * @author: G
    * @date  : 31-05-2017
    */
 
@@ -29,13 +29,15 @@
       echo '<span style="color: red">' . mysqli_error($conn) . '</span>';
       return false;
     }
+
     if(!$resultNeeded)
       return true;
 
     if($resultNeeded && mysqli_num_rows($rs) > 0) {
       return $rs;
     } else {
-      return false;     
+      return false;
     }
+    
   }
 ?>

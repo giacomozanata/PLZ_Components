@@ -3,8 +3,9 @@
 <html>
 
 <head>
-    <title>PLZCOMPONENTS</title>
+    <title>INSERISCI PRODOTTI | PLZCOMPONENTS</title>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link rel="shortcut icon" href="resources/title_logo.png" />
 </head>
 
 <body>
@@ -15,18 +16,12 @@
         </div>
         <div id="menu">
             <ul>
-               <li><a href="index.html">HOME</a>
-               <li>
-               <li><a href="crea_cliente.html">CREA CLIENTE</a>
-               <li>
-               <li><a href="inserisci_prodotti.php">INSERISCI PRODOTTI</a>
-               <li>
-               <li><a href="vendi_prodotti.php">VENDI PRODOTTI</a>
-               <li>
-               <li><a href="crea_fornitore.html">CREA FORNITORE</a>
-               <li>
-               <li><a href="operazioni.html">OPERAZIONI</a>
-               <li>
+               <li><a href="index.html">HOME</a><li>
+               <li><a href="crea_cliente.html">CREA CLIENTE</a><li>
+               <li><a href="inserisci_prodotti.php">INSERISCI PRODOTTI</a><li>
+               <li><a href="vendi_prodotti.php">VENDI PRODOTTI</a><li>
+               <li><a href="crea_fornitore.html">CREA FORNITORE</a><li>
+               <li><a href="operazioni.html">OPERAZIONI</a><li>
             </ul>
          </div>
     </div>
@@ -36,6 +31,7 @@
         <form class="form" action="inserisci_prodotti2.php" method="POST">
             <p>PARTITA IVA FORNITORE *:</p>
             <?php getSelectFornitori() ?>
+            <button type="submit" name="ac"> AGGIUNGI FORNITORE </button>
             <p>CODICE ARTICOLO *:</p>
             <input type="text" name="Cod_Articolo">
             <p>DATA ACQUISTO *:</p>

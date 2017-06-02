@@ -1,7 +1,8 @@
 <html>
 <head>
-    <title>PLZCOMPONENTS</title>
+    <title>INSERISCI PRODOTTI | PLZCOMPONENTS</title>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link rel="shortcut icon" href="resources/title_logo.png" />
 </head>
 <body>
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -29,15 +30,24 @@
     <div id="main_cf" class="main">
       <center>
         <br><br><br><br>
-        <?php 
-            include 'scripts/functions.php'; 
+
+        <?php
+            include 'scripts/functions.php';
+
+            if(isset($_POST['ac'])) {
+              header("Location: " . rtrim(dirname($_SERVER['PHP_SELF']), '/\\') . "/crea_fornitore.html");
+              die();
+            }
+
             $p_iva = isset($_POST['p_iva']) ? test_input($_POST['p_iva']) : null;
             $Cod_Articolo = isset($_POST['Cod_Articolo']) ? test_input($_POST['Cod_Articolo']) : null;
             $Data_Acquisto = isset($_POST['Data_Acquisto']) ? test_input($_POST['Data_Acquisto']) : null;
             $prezzo = isset($_POST['prezzo']) ? test_input($_POST['prezzo']) : null;
             $quantita = isset($_POST['quantita']) ? test_input($_POST['quantita']) : null;
             $descrizione = isset($_POST['descrizione']) ? test_input($_POST['descrizione']) : null;
+
             $flag = true;
+
             if(empty($p_iva)){
               echo "<p id='p_error'> il campo partita iva deve essere completato </p><br>";
               $flag = false;
@@ -71,6 +81,7 @@
             if(!empty($descrizione)){
               echo "La descrizione che hai inserito è: $descrizione <br>";
             }
+
             if(!$flag) {
                 echo '<br><br>';
                 backButton();
@@ -84,13 +95,14 @@
             $sql = "INSERT INTO acquisti (FK_P_Iva, FK_Cod_Articolo, Data_Acquisto, Prezzo, Quantita)
                     VALUES ('$p_iva', '$Cod_Articolo', '$Data_Acquisto', $prezzo, $quantita);";
             $tmp = $tmp && query(getConn(), $sql, false);
-            
+
             if($tmp) {
               echo "<p id='p_insert'> Dati inseriti con successo!!</p><br>";
-              acquistoButton();
+              redirectButton("inserisci_prodotti.php","AGGIUNGI UN' ALTRO ACQUISTO");
             } else {
               echo "<p id='p_error'>Errore nell'inserimento dati nel database</p>";
             }
+
         ?>
       </center>
     </div>

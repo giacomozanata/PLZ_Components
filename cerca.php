@@ -1,7 +1,8 @@
 <html>
 <head>
-  <title>PLZCOMPONENTS</title>
+  <title>RICERCA | PLZCOMPONENTS</title>
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <link rel="shortcut icon" href="resources/title_logo.png" />
 </head>
 <body>
   <link rel="stylesheet" type="text/css" href="style.css">
@@ -28,6 +29,8 @@
   <div class="main">
 
     <?php
+
+    include "scripts/functions.php";
 
     $table = $_POST['search'];
     $col = null;
@@ -90,17 +93,17 @@
 
     $sql = "SELECT * FROM $table WHERE $col";
     if($result = mysqli_query($conn, $sql)){
-    if(mysqli_num_rows($result) > 0){
-      echo "<center>";
-      echo "<table class='table_default'>";
-      if($tmp == "acquisti"){
-        echo "<tr>";
-            echo "<th>PARTITA IVA FORNITORE</th>";
-            echo "<th>CODICE ARTICOLO ACQUISTATO</th>";
-            echo "<th>DATA DI ACQUISTO</th>";
-            echo "<th>PREZZO</th>";
-            echo "<th>QUANTITA'</th>";
-        echo "</tr>";
+      if(mysqli_num_rows($result) > 0){
+        echo "<center>";
+        echo "<table class='table_default'>";
+        if($tmp == "acquisti"){
+          echo "<tr>";
+              echo "<th>PARTITA IVA FORNITORE</th>";
+              echo "<th>CODICE ARTICOLO ACQUISTATO</th>";
+              echo "<th>DATA DI ACQUISTO</th>";
+              echo "<th>PREZZO</th>";
+              echo "<th>QUANTITA'</th>";
+          echo "</tr>";
         while($row = mysqli_fetch_array($result)){
             echo "<tr>";
                 echo "<td>" . $row['FK_P_Iva'] . "</td>";
@@ -163,28 +166,25 @@
             echo "</tr>";
         }
       }
-        echo "</table>";
-        echo "</center>";
-        mysqli_free_result($result);
-    } else{
-        echo "No records matching your query were found.";
-    }
-} else{
-    echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
-}
+      echo "</table>";
+      echo "</center>";
+      mysqli_free_result($result);
 
-mysqli_close($conn);
+      }else{
+        echo "<p id='p_error'>Non sono stati trovati risultati corrispondenti alla tua ricerca!<p>";
+      }
+
+    }else{
+    echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+    }
+
+    mysqli_close($conn);
 
   echo "<br><br>";
 
-  echo '<button onclick="goBack()">INDIETRO</button>
-    <script>
-      function goBack() {
-        window.history.back();
-      }
-      </script>';
+  backButton();
 
-?>
+  ?>
 
   </div>
 
