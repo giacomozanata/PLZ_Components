@@ -88,19 +88,27 @@
                 die();
             }
 
+            echo"<br><hr><br>";
+
+            if($conn)
+              echo "<p id='p_insert'> connessione con il database avvenuta con successo! </p>";
+
+            echo "Carico i dati nel database...<br>";
+
             $sql = "INSERT INTO articoli (Cod_Articolo, Descrizione, Quantita)
                     VALUES ('$Cod_Articolo', '$descrizione', $quantita)
                     ON DUPLICATE KEY UPDATE Quantita = Quantita + $quantita;";
-            $tmp = query(getConn(), $sql, false);
+            $tmp = query($conn, $sql, false);
             $sql = "INSERT INTO acquisti (FK_P_Iva, FK_Cod_Articolo, Data_Acquisto, Prezzo, Quantita)
                     VALUES ('$p_iva', '$Cod_Articolo', '$Data_Acquisto', $prezzo, $quantita);";
-            $tmp = $tmp && query(getConn(), $sql, false);
+            $tmp = $tmp && query($conn, $sql, false);
 
             if($tmp) {
               echo "<p id='p_insert'> Dati inseriti con successo!!</p><br>";
               redirectButton("inserisci_prodotti.php","AGGIUNGI UN' ALTRO ACQUISTO");
             } else {
               echo "<p id='p_error'>Errore nell'inserimento dati nel database</p>";
+              die();
             }
 
         ?>

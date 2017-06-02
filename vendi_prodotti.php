@@ -16,7 +16,7 @@
                <li><a href="index.html">HOME</a><li>
                <li><a href="crea_cliente.html">CREA CLIENTE</a><li>
                <li><a href="inserisci_prodotti.php">INSERISCI PRODOTTI</a><li>
-               <li><a href="vendiprodotti.php">VENDI PRODOTTI</a><li>
+               <li><a href="vendi_prodotti.php">VENDI PRODOTTI</a><li>
                <li><a href="crea_fornitore.html">CREA FORNITORE</a><li>
                <li><a href="operazioni.html">OPERAZIONI</a><li>
             </ul>
@@ -29,7 +29,7 @@
 
             <p>CODICE FISCALE CLIENTE *:</p>
             <?php getSelectCliente(); ?>
-            <button type="submit" name="ac"> AGGIUNGI CLIENTE </button>
+            &nbsp&nbsp<button type="submit" name="ac"> AGGIUNGI CLIENTE </button>
             <p>CODICE ARTICOLO ACQUISTATO *:</p>
             <?php getSelectArticoli(); ?>
             <p>DATA VENDITA *:</p>

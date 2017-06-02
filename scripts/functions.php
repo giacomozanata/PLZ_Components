@@ -13,7 +13,7 @@
 
         echo "<select name='p_iva'>";
 
-        while ($row = $result->fetch_assoc()) {
+        while ($row = mysqli_fetch_assoc($result)) {
         unset($p_iva);
         $p_iva = $row['p_iva'];
         $rag_soc = $row['ragione_sociale'];

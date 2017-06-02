@@ -26,8 +26,8 @@
 
   </div>
 
-  <div class="main">
-
+  <div id="main_cf" class="main">
+    <center>
     <br><br><br><br><br>
     <?php
 
@@ -82,59 +82,60 @@
 
       if($flag==false){
 
-      $conn = mysqli_connect("localhost","root","","Pezzi");
+      echo"<br><hr><br>";
 
-      if(!$conn) {
-        die("<p id='p_error'>Connessione Fallita: " . mysqli_connect_error()." </p>");
-        $flag=true;
-      } else {
+      $conn = getConn();
+
+      if($conn)
         echo "<p id='p_insert'> connessione con il database avvenuta con successo! </p>";
-      }
 
       echo "Carico i dati nel database...<br>";
 
-      $sql = " SELECT Quantita from articoli WHERE Cod_Articolo = '" . test_input($_POST['Cod_Articolo']) . "'";
-
-      $result = mysqli_query($conn, $sql);
+      $result = query($conn, "SELECT Quantita from articoli WHERE Cod_Articolo = '" . test_input($_POST['Cod_Articolo']) . "'",true);;
 
       if(!mysqli_error($conn)) {
 
         $row = mysqli_fetch_assoc($result);
         if($row['Quantita'] < $_POST['quantita']) {
           echo "<p id='p_error'> Non ci sono abbastanza prodotti in magazzino </p>";
+          backButton();
           mysqli_close($conn);
           die();
         } else {
           $quantita = ($row['Quantita'] - $_POST['quantita']);
-          $sql2 = "UPDATE articoli
+          $sql = "UPDATE articoli
                     SET Quantita = '$quantita'
                     WHERE Cod_Articolo = '" . test_input($_POST['Cod_Articolo']) . "'";
-          mysqli_query($conn, $sql2);
+          $tmp=query($conn, $sql, false);
+          $sql2="INSERT INTO vendite (FK_Cod_Articolo, FK_Codice_Fiscale, Data, Prezzo, Quantita)
+                VALUES('".test_input($_POST['Cod_Articolo'])."','".test_input($_POST['Codice_Fiscale'])."','".test_input($_POST['data'])."','".test_input($_POST['prezzo'])."','".test_input($_POST['quantita'])."')";
+          $tmp = $tmp && query($conn, $sql2, false);
         }
 
-        }
-
-        $sql3="INSERT INTO vendite (FK_Cod_Articolo, FK_Codice_Fiscale, Data, Prezzo, Quantita)
-              VALUES('".test_input($_POST['Cod_Articolo'])."','".test_input($_POST['Codice_Fiscale'])."','".test_input($_POST['data'])."','".test_input($_POST['prezzo'])."','".test_input($_POST['quantita'])."')";
-
-        if(!mysqli_query($conn, $sql3))
-          echo "<p id='p_error'> Errore: " . $sql . "<br>" . mysqli_error($conn) . "</p>";
-        else {
+        if($tmp) {
           echo "<p id='p_insert'> Dati inseriti con successo!!</p><br>";
           redirectButton("vendi_prodotti.php","AGGIUNGI UN' ALTRA VENDITA");
+        } else {
+          echo "<p id='p_error'>Errore nell'inserimento dati nel database</p>";
+          die();
+        }
+
         }
 
         mysqli_free_result($result);
         mysqli_close($conn);
 
-      }else if($flag==true){
+      }elseif ($flag==true) {
+        echo '<br><br>';
         backButton();
         die();
       }
 
+
+
     ?>
 
-
+  </center>
   </div>
 
   <div id="footer" class="footer">

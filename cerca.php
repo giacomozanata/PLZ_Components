@@ -79,11 +79,9 @@
 
         break;
     }
-    $conn = mysqli_connect("localhost","root","","Pezzi");
+    $conn = getConn();
 
-    if(!$conn){
-    die("<p id='p_error'>Connessione Fallita: " . mysqli_connect_error()." </p>");
-    }else{
+    if($conn){
     echo "<p id='p_insert'> connessione con il database avvenuta con successo! </p>";
     }
 
@@ -92,7 +90,7 @@
     echo "<br><hr><br>";
 
     $sql = "SELECT * FROM $table WHERE $col";
-    if($result = mysqli_query($conn, $sql)){
+    $result = query($conn, $sql, true);
       if(mysqli_num_rows($result) > 0){
         echo "<center>";
         echo "<table class='table_default'>";
@@ -173,10 +171,6 @@
       }else{
         echo "<p id='p_error'>Non sono stati trovati risultati corrispondenti alla tua ricerca!<p>";
       }
-
-    }else{
-    echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
-    }
 
     mysqli_close($conn);
 

@@ -28,8 +28,8 @@ text-align: right;
 }
 
 .main{
-  padding-top: 10em;
-  padding-left: 10px;
+  padding: 50px;
+	padding-top: 150px;
   width: auto;
   height: auto;
   background-color: white;
@@ -104,7 +104,6 @@ hr {
 }
 
 #main_cf{
-  padding-top: 10em;
   text-align: left;
   left: 16px;
 }
