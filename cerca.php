@@ -81,12 +81,17 @@
     }
     $conn = getConn();
 
+
+    if($conn){
+    echo "<p id='p_insert'> connessione con il database avvenuta con successo! </p>";
+    }
+
     echo "Cerco i dati nel database...<br>";
 
     echo "<br><hr><br>";
 
     $sql = "SELECT * FROM $table WHERE $col";
-    if($result = mysqli_query($conn, $sql)){
+    $result = query($conn, $sql, true);
       if(mysqli_num_rows($result) > 0){
         echo "<center>";
         echo "<table class='table_default'>";
@@ -195,10 +200,6 @@
       }else{
         echo "<p id='p_error'>Non sono stati trovati risultati corrispondenti alla tua ricerca!<p>";
       }
-
-    }else{
-    echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
-    }
 
     mysqli_close($conn);
 

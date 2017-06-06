@@ -75,14 +75,13 @@
 
     if($flag == false){
 
-      $conn = mysqli_connect("localhost","root","","Pezzi");
+      echo"<br><hr><br>";
 
-      if(!$conn){
-      die("<p id='p_error'>Connessione Fallita: " . mysqli_connect_error()." </p>");
-      $flag=true;
-      }else{
+      $conn = getConn();
+
+      if($conn)
       echo "<p id='p_insert'> connessione con il database avvenuta con successo! </p>";
-      }
+
 
       echo "Carico i dati nel database...<br>";
 

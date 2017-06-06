@@ -14,7 +14,7 @@
 
     $conn = mysqli_connect($db_addr, $db_user, $db_pwd, $db_name);
     if(!$conn) {
-      die(mysqli_error($conn));
+      die("<p id='p_error'>Connessione Fallita: " . mysqli_connect_error()." </p>");
     }
     return $conn;
   }

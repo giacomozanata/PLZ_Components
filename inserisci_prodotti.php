@@ -31,7 +31,7 @@
         <form class="form" action="inserisci_prodotti2.php" method="POST">
             <p>PARTITA IVA FORNITORE *:</p>
             <?php getSelectFornitori() ?>
-            <button type="submit" name="ac"> AGGIUNGI FORNITORE </button>
+            &nbsp&nbsp<button type="submit" name="ac"> AGGIUNGI FORNITORE </button>
             <p>CODICE ARTICOLO *:</p>
             <input type="text" name="Cod_Articolo">
             <p>DATA ACQUISTO *:</p>
