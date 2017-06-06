@@ -20,7 +20,7 @@
         <li><a href="inserisci_prodotti.php">INSERISCI PRODOTTI</a><li>
         <li><a href="vendi_prodotti.php">VENDI PRODOTTI</a><li>
         <li><a href="crea_fornitore.html">CREA FORNITORE</a><li>
-        <li><a href="operazioni.php">OPERAZIONI</a><li>
+        <li><a href="operazioni.html">OPERAZIONI</a><li>
       </ul>
     </div>
 
@@ -29,6 +29,7 @@
   <div id="main_cf" class="main">
 
     <br><br>
+
   <center>
   <form action="cerca.php" method="POST">
 
@@ -39,49 +40,15 @@
       <option value="vendite"> VENDITA </option>
       <option value="acquisti"> INSERIMENTO </option>
     </select>
-    &nbsp &nbsp
+    <br>
+    <br>
+    <br>
     QUERY DI RICERCA:
     <input type="text" name="search_query">
-    &nbsp &nbsp
+    <br>
+    <br>
+    <br>
     <button type="submit"> CERCA! </button>
-
-  </form>
-
-  <br><br>
-
-  <form action="modifica.php" method="POST">
-
-    MODIFICA:
-    <select name="modify">
-      <option value="cliente"> CLIENTE </option>
-      <option value="fornitori"> FORNITORE </option>
-      <option value="vendite"> VENDITA </option>
-      <option value="acquisti"> INSERIMENTO </option>
-    </select>
-    &nbsp &nbsp
-    QUERY DI RICERCA:
-    <input type="text" name="modify_query">
-    &nbsp &nbsp
-    <button type="submit"> INVIA! </button>
-
-  </form>
-
-  <br><br>
-
-  <form action="elimina.php" method="POST">
-
-    ELIMINA:
-    <select name="delete">
-      <option value="cliente"> CLIENTE </option>
-      <option value="fornitori"> FORNITORE </option>
-      <option value="vendite"> VENDITA </option>
-      <option value="acquisti"> INSERIMENTO </option>
-    </select>
-    &nbsp &nbsp
-    QUERY DI RICERCA:
-    <input type="text" name="delete_query">
-    &nbsp &nbsp
-    <button type="submit"> INVIA! </button>
 
   </form>
   </center>

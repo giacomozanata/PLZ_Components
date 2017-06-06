@@ -6,7 +6,6 @@
    */
 
     include 'dbmanager.php';
-    include 'salva.php';
 
     function getSelectFornitori() {
         $conn = getConn();

@@ -103,7 +103,7 @@
               echo "<th>PREZZO</th>";
               echo "<th>QUANTITA'</th>";
           echo "</tr>";
-        while($row = mysqli_fetch_array($result)){
+        while($row = mysqli_fetch_assoc($result)){
             echo "<tr>";
                 echo "<td>" . $row['FK_P_Iva'] . "</td>";
                 echo "<td>" . $row['FK_Cod_Articolo'] . "</td>";
@@ -127,7 +127,7 @@
             echo "<th>TELEFONO AZIENDA</th>";
         echo "</tr>";
         $f = true;
-        while($row = mysqli_fetch_array($result)){
+        while($row = mysqli_fetch_assoc($result)){
           if($f) {
             $f = false;
           } else {
@@ -153,7 +153,7 @@
             echo "<th>TELEFONO</th>";
         echo "</tr>";
         $f = true;
-        while($row = mysqli_fetch_array($result)){
+        while($row = mysqli_fetch_assoc($result)){
           if($f){
             $f=false;
           }else{
@@ -179,7 +179,7 @@
             echo "<th>PREZZO UNITARIO</th>";
             echo "<th>QUANTITA'</th>";
         echo "</tr>";
-        while($row = mysqli_fetch_array($result)){
+        while($row = mysqli_fetch_assoc($result)){
             echo "<tr>";
                 echo "<td>" . $row['FK_Cod_Articolo'] . "</td>";
                 echo "<td>" . $row['FK_Codice_Fiscale'] . "</td>";
@@ -199,6 +199,7 @@
 
       }else{
         echo "<p id='p_error'>Non sono stati trovati risultati corrispondenti alla tua ricerca!<p>";
+        die();
       }
 
     mysqli_close($conn);

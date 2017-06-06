@@ -36,12 +36,14 @@
     $table=$_POST['table'];
     $conn = getConn();
 
-    echo "<center> <table class='table_default'>";
+    echo "<center>";
 
     if($table=="acquisti"){
       $sql = "SELECT * FROM acquisti WHERE ID_Acquisto = '$row_id'" ;
       $rs = query($conn, $sql , true);
       $row = mysqli_fetch_assoc($rs);
+
+      echo "<form action='scripts/salva.php' method='POST' > <table class='table_default'>";
 
       echo "<tr>";
           echo "<th>PARTITA IVA FORNITORE</th>";
@@ -52,33 +54,38 @@
       echo "</tr>";
 
       echo "<tr>";
-          echo "<th>";
-            echo "<input type='text' name='p_iva' value='".$row['FK_P_Iva']."'>";
-          echo "</th>";
+          echo "<td>";
+            echo "".$row['FK_P_Iva']."";
+          echo "</td>";
 
-          echo "<th>";
-            echo "<input type='text' name='rag_soc' value='".$row['FK_Cod_Articolo']."'>";
-          echo "</th>";
+          echo "<td>";
+            echo "".$row['FK_Cod_Articolo']."";
+          echo "</td>";
 
-          echo "<th>";
-            echo "<input type='text' name='indirizzo' value='".$row['Data_Acquisto']."'>";
-          echo "</th>";
+          echo "<td>";
+            echo "<input type='text' name='data' value='".$row['Data_Acquisto']."'>";
+          echo "</td>";
 
-          echo "<th>";
-            echo "<input type='text' name='telefono' value='".$row['Prezzo']."'>";
-          echo "</th>";
+          echo "<td>";
+            echo "<input type='text' name='prezzo' value='".$row['Prezzo']."'>";
+          echo "</td>";
 
-          echo "<th>";
-            echo "<input type='text' name='telefono' value='".$row['Quantita']."'>";
-          echo "</th>";
+          echo "<td>";
+            echo "<input type='text' name='quantita' value='".$row['Quantita']."'>";
+          echo "</td>";
 
       echo "</tr>";
+      echo "</table>";
+
+
     }
     if($table=="vendite"){
 
       $sql = "SELECT * FROM vendite WHERE Id_Vendita = '$row_id'" ;
       $rs = query($conn, $sql , true);
       $row = mysqli_fetch_assoc($rs);
+
+      echo "<form action='scripts/salva.php' method='POST' > <table class='table_default'>";
 
       echo "<tr>";
           echo "<th>CODICE ARTICOLO</th>";
@@ -89,27 +96,29 @@
       echo "</tr>";
 
       echo "<tr>";
-          echo "<th>";
-            echo "<input type='text' name='p_iva' value='".$row['FK_Cod_Articolo']."'>";
-          echo "</th>";
+          echo "<td>";
+            echo "".$row['FK_Cod_Articolo']."";
+          echo "</td>";
 
-          echo "<th>";
-            echo "<input type='text' name='rag_soc' value='".$row['FK_Codice_Fiscale']."'>";
-          echo "</th>";
+          echo "<td>";
+            echo "".$row['FK_Codice_Fiscale']."";
+          echo "</td>";
 
-          echo "<th>";
-            echo "<input type='text' name='indirizzo' value='".$row['Data']."'>";
-          echo "</th>";
+          echo "<td>";
+            echo "<input type='text' name='data' value='".$row['Data']."'>";
+          echo "</td>";
 
-          echo "<th>";
-            echo "<input type='text' name='telefono' value='".$row['Prezzo']."'>";
-          echo "</th>";
+          echo "<td>";
+            echo "<input type='text' name='prezzo' value='".$row['Prezzo']."'>";
+          echo "</td>";
 
-          echo "<th>";
-            echo "<input type='text' name='telefono' value='".$row['Quantita']."'>";
-          echo "</th>";
+          echo "<td>";
+            echo "<input type='text' name='quantita' value='".$row['Quantita']."'>";
+          echo "</td>";
 
       echo "</tr>";
+
+      echo "</table>";
 
     }
     if ($table=="cliente") {
@@ -117,6 +126,8 @@
       $sql = "SELECT * FROM cliente WHERE Codice_Fiscale = '$row_id'" ;
       $rs = query($conn, $sql , true);
       $row = mysqli_fetch_assoc($rs);
+
+      echo "<form action='scripts/salva.php' method='POST' > <table class='table_default'>";
 
       echo "<tr>";
           echo "<th>CODICE FISCALE</th>";
@@ -127,33 +138,37 @@
       echo "</tr>";
 
       echo "<tr>";
-          echo "<th>";
-            echo "<input type='text' name='p_iva' value='".$row['Codice_Fiscale']."'>";
-          echo "</th>";
+          echo "<td>";
+            echo "".$row['Codice_Fiscale']."";
+          echo "</td>";
 
-          echo "<th>";
-            echo "<input type='text' name='rag_soc' value='".$row['Nome_O_Ragione_Sociale']."'>";
-          echo "</th>";
+          echo "<td>";
+            echo "<input type='text' name='nome_o_rag_soc' value='".$row['Nome_O_Ragione_Sociale']."'>";
+          echo "</td>";
 
-          echo "<th>";
+          echo "<td>";
             echo "<input type='text' name='indirizzo' value='".$row['Indirizzo']."'>";
-          echo "</th>";
+          echo "</td>";
 
-          echo "<th>";
-            echo "<input type='text' name='telefono' value='".$row['P_Iva']."'>";
-          echo "</th>";
+          echo "<td>";
+            echo "<input type='text' name='p_iva' value='".$row['P_Iva']."'>";
+          echo "</td>";
 
-          echo "<th>";
+          echo "<td>";
             echo "<input type='text' name='telefono' value='".$row['Telefono']."'>";
-          echo "</th>";
+          echo "</td>";
 
       echo "</tr>";
+
+      echo "</table>";
 
     }
     if ($table=="fornitori") {
       $sql = "SELECT * FROM fornitori WHERE P_Iva = '$row_id'" ;
       $rs = query($conn, $sql , true);
       $row = mysqli_fetch_assoc($rs);
+
+      echo "<form action='scripts/salva.php' method='POST' > <table class='table_default'>";
 
       echo "<tr>";
           echo "<th>PARTITA IVA</th>";
@@ -163,24 +178,36 @@
       echo "</tr>";
 
       echo "<tr>";
-          echo "<th>";
-            echo "<input type='text' name='p_iva' value='".$row['P_Iva']."'>";
-          echo "</th>";
+          echo "<td>";
+            echo "".$row['P_Iva']."";
+          echo "</td>";
 
-          echo "<th>";
+          echo "<td>";
             echo "<input type='text' name='rag_soc' value='".$row['Ragione_Sociale']."'>";
-          echo "</th>";
+          echo "</td>";
 
-          echo "<th>";
+          echo "<td>";
             echo "<input type='text' name='indirizzo' value='".$row['Indirizzo']."'>";
-          echo "</th>";
+          echo "</td>";
 
-          echo "<th>";
+          echo "<td>";
             echo "<input type='text' name='telefono' value='".$row['Telefono']."'>";
-          echo "</th>";
+          echo "</td>";
       echo "</tr>";
+
+      echo "</table>";
+
     }
-    echo "</table> </center>";
+
+    echo "<input type='hidden' name='table' value='$table'>";
+    echo "<input type='hidden' name='id' value='$row_id'>";
+    echo "<input type='submit' value='SALVA!'>";
+    echo "</form>";
+
+    echo "</center>";
+
+
+
     mysqli_close($conn);
     ?>
 
