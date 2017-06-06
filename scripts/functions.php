@@ -6,6 +6,7 @@
    */
 
     include 'dbmanager.php';
+    include 'salva.php';
 
     function getSelectFornitori() {
         $conn = getConn();
@@ -87,6 +88,15 @@
       echo "<form method='get' action='$page'>";
       echo "<button type='submit'>".$msg."</button>";
       echo "</form>";
+    }
+
+    function modifyButton($key, $table){
+      echo
+        "<form action='modifica.php' method='POST'>
+        <button type='submit' name='mod'> MODIFICA </button>
+        <input type='hidden' name='id' value='$key'>
+        <input type='hidden' name='table' value='$table'>
+        </form>";
     }
 
 ?>

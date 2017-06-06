@@ -79,13 +79,7 @@
 
         break;
     }
-    $conn = mysqli_connect("localhost","root","","Pezzi");
-
-    if(!$conn){
-    die("<p id='p_error'>Connessione Fallita: " . mysqli_connect_error()." </p>");
-    }else{
-    echo "<p id='p_insert'> connessione con il database avvenuta con successo! </p>";
-    }
+    $conn = getConn();
 
     echo "Cerco i dati nel database...<br>";
 
@@ -111,6 +105,12 @@
                 echo "<td>" . $row['Data_Acquisto'] . "</td>";
                 echo "<td>" . $row['Prezzo'] . "</td>";
                 echo "<td>" . $row['Quantita'] . "</td>";
+                echo "<td><br>";
+                modifyButton($row['ID_Acquisto'], $tmp);
+                echo "</td>";
+                echo "<td>
+                            <button onclick='#'> ELIMINA </button>
+                      </td>";
             echo "</tr>";
         }
       }
@@ -121,13 +121,22 @@
             echo "<th>INDIRIZZO AZIENDA</th>";
             echo "<th>TELEFONO AZIENDA</th>";
         echo "</tr>";
+        $f = true;
         while($row = mysqli_fetch_array($result)){
+          if($f) {
+            $f = false;
+          } else {
             echo "<tr>";
                 echo "<td>" . $row['P_Iva'] . "</td>";
                 echo "<td>" . $row['Ragione_Sociale'] . "</td>";
                 echo "<td>" . $row['Indirizzo'] . "</td>";
                 echo "<td>" . $row['Telefono'] . "</td>";
+                echo "<td><br>";
+                  modifyButton($row['P_Iva'], $tmp);
+                echo "</td>";
+                echo "<td><button onclick='#'> ELIMINA </button></td>";
             echo "</tr>";
+          }
         }
       }
       if($tmp == "cliente"){
@@ -138,14 +147,23 @@
             echo "<th>PARTITA IVA</th>";
             echo "<th>TELEFONO</th>";
         echo "</tr>";
+        $f = true;
         while($row = mysqli_fetch_array($result)){
+          if($f){
+            $f=false;
+          }else{
             echo "<tr>";
                 echo "<td>" . $row['Codice_Fiscale'] . "</td>";
                 echo "<td>" . $row['Nome_O_Ragione_Sociale'] . "</td>";
                 echo "<td>" . $row['Indirizzo'] . "</td>";
                 echo "<td>" . $row['P_Iva'] . "</td>";
                 echo "<td>" . $row['Telefono'] . "</td>";
+                echo "<td><br>";
+                  modifyButton($row['Codice_Fiscale'], $tmp);
+                echo "</td>";
+                echo "<td><button onclick='#'> ELIMINA </button></td>";
             echo "</tr>";
+          }
         }
       }
       if($tmp == "vendite"){
@@ -163,6 +181,10 @@
                 echo "<td>" . $row['Data'] . "</td>";
                 echo "<td>" . $row['Prezzo'] . "</td>";
                 echo "<td>" . $row['Quantita'] . "</td>";
+                echo "<td><br>";
+                  modifyButton($row['Id_Vendita'], $tmp);
+                echo "</td>";
+                echo "<td><button onclick='#'> ELIMINA </button></td>";
             echo "</tr>";
         }
       }
