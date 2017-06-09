@@ -90,7 +90,7 @@
 
             echo"<br><hr><br>";
 
-            if($conn)
+            if($conn = getConn())
               echo "<p id='p_insert'> connessione con il database avvenuta con successo! </p>";
 
             echo "Carico i dati nel database...<br>";
