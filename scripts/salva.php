@@ -8,22 +8,26 @@
   switch($table) {
     case 'acquisti':
 
+      $p_iva = isset($_POST['P_Iva']) ? test_input($_POST['P_Iva']) : null;
+      $cod_articolo = isset($_POST['Cod_Articolo']) ? test_input($_POST['Cod_Articolo']) : null;
       $data = isset($_POST['data']) ? test_input($_POST['data']) : null;
       $prezzo = isset($_POST['prezzo']) ? test_input($_POST['prezzo']) : null;
       $quantita = isset($_POST['quantita']) ? test_input($_POST['quantita']) : null;
 
-      $sql = "UPDATE acquisti SET Data_Acquisto = '$data', Prezzo = '$prezzo', Quantita = '$quantita' WHERE ID_Acquisto = '$row_id' ";
+      $sql = "UPDATE acquisti SET FK_P_iva = '$p_iva', FK_Cod_Articolo = '$cod_articolo', Data_Acquisto = '$data', Prezzo = '$prezzo', Quantita = '$quantita' WHERE ID_Acquisto = '$row_id' ";
       query(getConn(), $sql, false);
 
     break;
 
     case 'vendite':
 
+      $cod_articolo = isset($_POST['Cod_Articolo']) ? test_input($_POST['Cod_Articolo']) : null;
+      $codice_fiscale = isset($_POST['Codice_Fiscale']) ? test_input($_POST['Codice_Fiscale']) : null;
       $data = isset($_POST['data']) ? test_input($_POST['data']) : null;
       $prezzo = isset($_POST['prezzo']) ? test_input($_POST['prezzo']) : null;
       $quantita = isset($_POST['quantita']) ? test_input($_POST['quantita']) : null;
 
-      $sql = "UPDATE vendite SET Data = '$data', Prezzo = '$prezzo', Quantita = '$quantita' WHERE ID_Vendita = '$row_id' ";
+      $sql = "UPDATE vendite SET FK_Cod_Articolo = '$cod_articolo', FK_Codice_Fiscale = '$codice_fiscale', Data = '$data', Prezzo = '$prezzo', Quantita = '$quantita' WHERE ID_Vendita = '$row_id' ";
       query(getConn(), $sql, false);
 
     break;
@@ -35,7 +39,7 @@
       $indirizzo = isset($_POST['indirizzo']) ? test_input($_POST['indirizzo']) : null;
       $telefono = isset($_POST['telefono']) ? test_input($_POST['telefono']) : null;
 
-      $sql = "UPDATE fornitori SET Ragione_Sociale = '$rag_soc', Indirizzo = '$indirizzo', Telefono = '$telefono' WHERE P_Iva = '$row_id' ";
+      $sql = "UPDATE fornitori SET P_Iva = '$p_iva', Ragione_Sociale = '$rag_soc', Indirizzo = '$indirizzo', Telefono = '$telefono' WHERE P_Iva = '$row_id' ";
       query(getConn(), $sql, false);
 
     break;
@@ -48,7 +52,7 @@
       $p_iva = isset($_POST['p_iva']) ? test_input($_POST['p_iva']) : null;
       $telefono = isset($_POST['telefono']) ? test_input($_POST['telefono']) : null;
 
-      $sql = "UPDATE cliente SET Nome_O_Ragione_Sociale = '$nome_o_rag_soc', Indirizzo = '$indirizzo', P_Iva = '$p_iva', Telefono = '$telefono'  WHERE Codice_Fiscale = '$row_id' ";
+      $sql = "UPDATE cliente SET Codice_Fiscale = '$codice_fiscale', Nome_O_Ragione_Sociale = '$nome_o_rag_soc', Indirizzo = '$indirizzo', P_Iva = '$p_iva', Telefono = '$telefono'  WHERE Codice_Fiscale = '$row_id' ";
       query(getConn(), $sql, false);
 
     break;

@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>RICERCA | PLZCOMPONENTS</title>
+  <title>MODIFICA | PLZCOMPONENTS</title>
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
   <link rel="shortcut icon" href="resources/title_logo.png" />
 </head>
@@ -36,7 +36,7 @@
     $table=$_POST['table'];
     $conn = getConn();
 
-    echo "<center>";
+    echo "<center><br><br> <p> Modifica la voce: </p> <br><br>";
 
     if($table=="acquisti"){
       $sql = "SELECT * FROM acquisti WHERE ID_Acquisto = '$row_id'" ;
@@ -55,11 +55,11 @@
 
       echo "<tr>";
           echo "<td>";
-            echo "".$row['FK_P_Iva']."";
+            getSelectFornitori();
           echo "</td>";
 
           echo "<td>";
-            echo "".$row['FK_Cod_Articolo']."";
+            echo "<input type='text' name='cod_articolo' value='".$row['FK_Cod_Articolo']."'>";
           echo "</td>";
 
           echo "<td>";
@@ -97,11 +97,11 @@
 
       echo "<tr>";
           echo "<td>";
-            echo "".$row['FK_Cod_Articolo']."";
+            getSelectArticoli();
           echo "</td>";
 
           echo "<td>";
-            echo "".$row['FK_Codice_Fiscale']."";
+            getSelectCliente();
           echo "</td>";
 
           echo "<td>";
@@ -139,7 +139,7 @@
 
       echo "<tr>";
           echo "<td>";
-            echo "".$row['Codice_Fiscale']."";
+            echo "<input type='text' name='codice_fiscale' value='".$row['Codice_Fiscale']."'>";
           echo "</td>";
 
           echo "<td>";
@@ -179,7 +179,7 @@
 
       echo "<tr>";
           echo "<td>";
-            echo "".$row['P_Iva']."";
+            echo "<input type='text' name='p_iva' value='".$row['P_Iva']."'>";
           echo "</td>";
 
           echo "<td>";
@@ -201,7 +201,7 @@
 
     echo "<input type='hidden' name='table' value='$table'>";
     echo "<input type='hidden' name='id' value='$row_id'>";
-    echo "<input type='submit' value='SALVA!'>";
+    echo "<br><br><input type='submit' value='SALVA!'>";
     echo "</form>";
 
     echo "</center>";
