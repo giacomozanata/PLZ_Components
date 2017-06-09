@@ -59,7 +59,7 @@
 
   }
 
-  header("Location: http://localhost/zanata/PLZ_Components/operazioni.html");
+  header("Location: http://localhost/denunzio/PLZ_Components/operazioni.html");
   die();
 
 ?>

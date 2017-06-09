@@ -25,7 +25,7 @@
 
       <div id="main_cf" class="main">
 
-         <form action="vendi_prodotti2.php" method="POST">
+         <form action="vendi_prodotti2.php" method="POST" class="customForm customStyle">
 
             <p>CODICE FISCALE CLIENTE *:</p>
             <?php getSelectCliente(); ?>
@@ -33,11 +33,11 @@
             <p>CODICE ARTICOLO ACQUISTATO *:</p>
             <?php getSelectArticoli(); ?>
             <p>DATA VENDITA *:</p>
-            <input type="date" name="data">
+            <input class="field-long" type="text" name="data">
             <p>PREZZO UNITARIO *:</p>
-            <input type="text" name="prezzo">
+            <input class="field-long" type="text" name="prezzo">
             <p>QUANTITA' *:</p>
-            <input type="number" name="quantita">
+            <input class="field-long" type="number" name="quantita">
             <br><br><br>
             <center><button onclick="submit"> VENDI PRODOTTO! </button></center>
             <br><br><br><br><br><br>
