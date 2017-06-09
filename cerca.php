@@ -166,7 +166,9 @@
                 echo "<td><br>";
                   modifyButton($row['Codice_Fiscale'], $tmp);
                 echo "</td>";
-                echo "<td><button onclick='#'> ELIMINA </button></td>";
+                echo "<td>";
+                  deleteButton($row['Codice_Fiscale'], $tmp);
+                echo "</td>";
             echo "</tr>";
           }
         }

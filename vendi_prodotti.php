@@ -40,10 +40,10 @@
             <input class="field-long" type="number" name="quantita">
             <br><br><br>
             <center><button onclick="submit"> VENDI PRODOTTO! </button></center>
-            <br><br><br><br><br><br>
+
 
          </form>
-
+<br><br><br><br><br><br>
       </div>
       <div id="footer" class="footer">
          <p id="fp"> Sviluppato da Zanata Giacomo, Cavaglia' Lorenzo e De Nunzio Pietro</p>

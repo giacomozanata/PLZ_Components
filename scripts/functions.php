@@ -1,10 +1,5 @@
 <?php
 
-  /*
-   * @author: G
-   * @date  : 31-05-2017
-   */
-
     include 'dbmanager.php';
 
     function getSelectFornitori() {
@@ -41,6 +36,8 @@
       mysqli_close($conn);
 
     }
+
+
 
     function getSelectArticoli(){
       $conn= getConn();
@@ -89,9 +86,19 @@
       echo "</form>";
     }
 
+    function deleteButton($key, $table){
+      echo
+        "<form action='scripts/elimina.php' method='POST' class='customStyle'>
+        <br>
+        <button type='submit' name='el'> ELIMINA </button>
+        <input type='hidden' name='id' value='$key'>
+        <input type='hidden' name='table' value='$table'>
+        </form>";
+    }
+
     function modifyButton($key, $table){
       echo
-        "<form action='modifica.php' method='POST'>
+        "<form action='modifica.php' method='POST' class='customStyle'>
         <button type='submit' name='mod'> MODIFICA </button>
         <input type='hidden' name='id' value='$key'>
         <input type='hidden' name='table' value='$table'>
