@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Creato il: Giu 02, 2017 alle 18:13
+-- Creato il: Giu 09, 2017 alle 10:38
 -- Versione del server: 10.1.10-MariaDB
 -- Versione PHP: 7.0.4
 
@@ -52,7 +52,7 @@ CREATE TABLE `articoli` (
 --
 
 INSERT INTO `articoli` (`Cod_Articolo`, `Descrizione`, `Quantita`) VALUES
-('', 'SELEZIONA UN ARTICOLO', 45);
+('', 'SELEZIONA UN ARTICOLO O AGGIUNGINE UNO', 0);
 
 -- --------------------------------------------------------
 
@@ -93,7 +93,7 @@ CREATE TABLE `fornitori` (
 --
 
 INSERT INTO `fornitori` (`P_Iva`, `Ragione_Sociale`, `Indirizzo`, `Telefono`) VALUES
-('', 'SELEZIONA UN FORNITORE', '', '');
+('', 'SELEZIONA UN FORNITORE O AGGIUNGINE UNO', '', '');
 
 -- --------------------------------------------------------
 
@@ -156,12 +156,12 @@ ALTER TABLE `vendite`
 -- AUTO_INCREMENT per la tabella `acquisti`
 --
 ALTER TABLE `acquisti`
-  MODIFY `ID_Acquisto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `ID_Acquisto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT per la tabella `vendite`
 --
 ALTER TABLE `vendite`
-  MODIFY `Id_Vendita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `Id_Vendita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Limiti per le tabelle scaricate
 --
@@ -170,15 +170,15 @@ ALTER TABLE `vendite`
 -- Limiti per la tabella `acquisti`
 --
 ALTER TABLE `acquisti`
-  ADD CONSTRAINT `acquisti_ibfk_1` FOREIGN KEY (`FK_P_Iva`) REFERENCES `fornitori` (`P_Iva`),
-  ADD CONSTRAINT `acquisti_ibfk_2` FOREIGN KEY (`FK_Cod_Articolo`) REFERENCES `articoli` (`Cod_Articolo`);
+  ADD CONSTRAINT `acquisti_ibfk_1` FOREIGN KEY (`FK_P_Iva`) REFERENCES `fornitori` (`P_Iva`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `acquisti_ibfk_2` FOREIGN KEY (`FK_Cod_Articolo`) REFERENCES `articoli` (`Cod_Articolo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `vendite`
 --
 ALTER TABLE `vendite`
-  ADD CONSTRAINT `Cod_Articolo` FOREIGN KEY (`FK_Cod_Articolo`) REFERENCES `articoli` (`Cod_Articolo`),
-  ADD CONSTRAINT `Codice_Fiscale` FOREIGN KEY (`FK_Codice_Fiscale`) REFERENCES `cliente` (`Codice_Fiscale`);
+  ADD CONSTRAINT `Cod_Articolo` FOREIGN KEY (`FK_Cod_Articolo`) REFERENCES `articoli` (`Cod_Articolo`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `Codice_Fiscale` FOREIGN KEY (`FK_Codice_Fiscale`) REFERENCES `cliente` (`Codice_Fiscale`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
