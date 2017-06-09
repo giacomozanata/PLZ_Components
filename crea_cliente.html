@@ -27,19 +27,22 @@
   </div>
 
   <div id="main_cf" class="main">
-    <form action="crea_cliente.php" method="POST">
-        <p>CODICE FISCALE *:</p>
-        <input type="text" name="Codice_Fiscale">
+    <br><br>
+    <form action="crea_cliente.php" method="POST" class="customForm customStyle">
+        <center><p>CODICE FISCALE *:</p>
+        <input class="field-long" type="text" name="Codice_Fiscale">
         <p>NOME O RAGIONE SOCIALE *:</p>
-        <input type="text" name="nome_o_ragione_sociale">
+        <input class="field-long" type="text" name="nome_o_ragione_sociale">
         <p>INDIRIZZO *:</p>
-        <input type="text" name="Indirizzo">
+        <input class="field-long" type="text" name="Indirizzo">
         <p>PARTITA IVA :</p>
-        <input type="number" name="P_Iva">
+        <input class="field-long" type="number" name="P_Iva">
         <p>TELEFONO *:</p>
-        <input type="number" name="Telefono"><br><br><br>
-        <center><button onclick="submit"> CREA CLIENTE! </button></center>
+        <input class="field-long" type="number" name="Telefono"><br><br><br>
+        <br>
+        <button onclick="submit"> CREA CLIENTE! </button></center>
     </form>
+    <br><br><br>
   </div>
 
   <div id="footer" class="footer">

@@ -28,34 +28,26 @@
 
     <div id="main_cf" class="main">
 
-        <form class="form" action="inserisci_prodotti2.php" method="POST">
-            <p>PARTITA IVA FORNITORE *:</p>
+        <form action="inserisci_prodotti2.php" method="POST" class="customForm customStyle form">
+            <center><p>PARTITA IVA FORNITORE *:</p>
             <?php getSelectFornitori() ?>
             &nbsp&nbsp<button type="submit" name="ac"> AGGIUNGI FORNITORE </button>
             <p>CODICE ARTICOLO *:</p>
-            <input type="text" name="Cod_Articolo">
+            <input class="field-long" type="text" name="Cod_Articolo">
             <p>DATA ACQUISTO *:</p>
-            <input type="date" name="Data_Acquisto">
+            <input class="field-long" type="date" name="Data_Acquisto">
             <p>PREZZO UNITARIO *:</p>
-            <input type="text" name="prezzo">
+            <input class="field-long" type="text" name="prezzo">
             <p>QUANTITA' *:</p>
-            <input type="number" name="quantita">
+            <input class="field-long" type="number" name="quantita">
             <p>DESCRIZIONE ARTICOLO :</p>
-            <input type="text" name="descrizione">
-            <br>
-            <br>
+            <input class="field-long" type="text" name="descrizione">
             <br>
             <input type="hidden" value="true" name="flag">
-            <center>
-                <button onclick="submit"> INSERISCI PRODOTTO! </button>
+            <button onclick="submit"> INSERISCI PRODOTTO! </button>
             </center>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
         </form>
+        <br><br><br>
 
     </div>
 

@@ -27,7 +27,7 @@
       $conn= getConn();
       $result = query($conn, "select Codice_Fiscale, Nome_O_Ragione_Sociale from cliente", true);
 
-      echo "<select name='Codice_Fiscale'>";
+      echo "<select class='field-long' name='Codice_Fiscale'>";
 
       while ($row = mysqli_fetch_assoc($result)) {
       unset($cod_fisc);
