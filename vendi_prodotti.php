@@ -33,7 +33,7 @@
             <p>CODICE ARTICOLO ACQUISTATO *:</p>
             <?php getSelectArticoli(); ?>
             <p>DATA VENDITA *:</p>
-            <input class="field-long" type="text" name="data">
+            <input class="field-long" type="date" name="data">
             <p>PREZZO UNITARIO *:</p>
             <input class="field-long" type="text" name="prezzo">
             <p>QUANTITA' *:</p>
