@@ -117,9 +117,9 @@
                 echo "<td><br>";
                 modifyButton($row['ID_Acquisto'], $tmp);
                 echo "</td>";
-                echo "<td>
-                            <button onclick='#'> ELIMINA </button>
-                      </td>";
+                echo "<td>";
+                deleteButton($row['Codice_Fiscale'], $tmp);
+                echo "</td>";
             echo "</tr>";
         }
       }
@@ -139,7 +139,9 @@
                 echo "<td><br>";
                   modifyButton($row['P_Iva'], $tmp);
                 echo "</td>";
-                echo "<td><button onclick='#'> ELIMINA </button></td>";
+                echo "<td>";
+                deleteButton($row['Codice_Fiscale'], $tmp);
+                echo "</td>";
             echo "</tr>";
         }
       }
@@ -185,7 +187,9 @@
                 echo "<td><br>";
                   modifyButton($row['Id_Vendita'], $tmp);
                 echo "</td>";
-                echo "<td><button onclick='#'> ELIMINA </button></td>";
+                echo "<td>";
+                deleteButton($row['Codice_Fiscale'], $tmp);
+                echo "</td>";
             echo "</tr>";
         }
       }
