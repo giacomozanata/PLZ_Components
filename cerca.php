@@ -93,7 +93,6 @@
     $sql = "SELECT * FROM $table WHERE $col";
     $result = query($conn, $sql, true);
     if($result == false){
-      echo "<p id='p_error'>Non sono stati trovati risultati corrispondenti alla tua ricerca!<p>";
       die();
     }
         echo "<center>";
@@ -117,7 +116,7 @@
                 modifyButton($row['ID_Acquisto'], $tmp);
                 echo "</td>";
                 echo "<td>";
-                deleteButton($row['Codice_Fiscale'], $tmp);
+                deleteButton($row['ID_Acquisto'], $tmp);
                 echo "</td>";
             echo "</tr>";
         }
@@ -139,7 +138,7 @@
                   modifyButton($row['P_Iva'], $tmp);
                 echo "</td>";
                 echo "<td>";
-                deleteButton($row['Codice_Fiscale'], $tmp);
+                deleteButton($row['P_Iva'], $tmp);
                 echo "</td>";
             echo "</tr>";
         }
@@ -187,7 +186,7 @@
                   modifyButton($row['Id_Vendita'], $tmp);
                 echo "</td>";
                 echo "<td>";
-                deleteButton($row['Codice_Fiscale'], $tmp);
+                deleteButton($row['Id_vendita'], $tmp);
                 echo "</td>";
             echo "</tr>";
         }
