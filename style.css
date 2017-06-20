@@ -219,7 +219,6 @@ hr {
 .customStyle input[type=time],
 .customStyle input[type=url],
 .customStyle input[type=email],
-.customStyle input[type=password],
 textarea,
 select{
     box-sizing: border-box;
@@ -287,12 +286,16 @@ input[type=submit]:hover, input[type=button]:hover, button:hover{
 }
 
 .customStyle input[type=text]::placeholder,
-.customStyle input[type=text]::placeholder {
+.customStyle input[type=text]::placeholder,
+.customStyle input[type=date]::placeholder,
+.customStyle input[type=number]::placeholder{
   text-align: center;
 }
 
 .customStyle input[type=text],
+.customStyle input[type=number],
 .customStyle input[type=password],
+.customStyle input[type=date],
 .customStyle input[type=email] {
   text-align: center;
 }

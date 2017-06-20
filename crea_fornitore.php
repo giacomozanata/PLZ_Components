@@ -100,7 +100,7 @@
 
                   if(query(getConn(), $sql, false)) {
                     echo "<p id='p_insert'> Dati inseriti con successo </p>";
-                    redirectButton("crea_cliente.html","AGGIUNGI UN' ALTRO FORNITORE");
+                    redirectButton("crea_fornitore.html","AGGIUNGI UN' ALTRO FORNITORE");
                   }
 
                 }

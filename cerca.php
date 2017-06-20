@@ -92,7 +92,9 @@
 
     $sql = "SELECT * FROM $table WHERE $col";
     $result = query($conn, $sql, true);
-      if(mysqli_num_rows($result) > 0){
+    if($result == false){
+      die();
+    }
         echo "<center>";
         echo "<table class='table_default'>";
         if($tmp == "acquisti"){
@@ -126,11 +128,7 @@
             echo "<th>INDIRIZZO AZIENDA</th>";
             echo "<th>TELEFONO AZIENDA</th>";
         echo "</tr>";
-        $f = true;
         while($row = mysqli_fetch_assoc($result)){
-          if($f) {
-            $f = false;
-          } else {
             echo "<tr>";
                 echo "<td>" . $row['P_Iva'] . "</td>";
                 echo "<td>" . $row['Ragione_Sociale'] . "</td>";
@@ -141,7 +139,6 @@
                 echo "</td>";
                 echo "<td><button onclick='#'> ELIMINA </button></td>";
             echo "</tr>";
-          }
         }
       }
       if($tmp == "cliente"){
@@ -152,11 +149,7 @@
             echo "<th>PARTITA IVA</th>";
             echo "<th>TELEFONO</th>";
         echo "</tr>";
-        $f = true;
         while($row = mysqli_fetch_assoc($result)){
-          if($f){
-            $f=false;
-          }else{
             echo "<tr>";
                 echo "<td>" . $row['Codice_Fiscale'] . "</td>";
                 echo "<td>" . $row['Nome_O_Ragione_Sociale'] . "</td>";
@@ -170,7 +163,6 @@
                   deleteButton($row['Codice_Fiscale'], $tmp);
                 echo "</td>";
             echo "</tr>";
-          }
         }
       }
       if($tmp == "vendite"){
@@ -198,11 +190,6 @@
       echo "</table>";
       echo "</center>";
       mysqli_free_result($result);
-
-      }else{
-        echo "<p id='p_error'>Non sono stati trovati risultati corrispondenti alla tua ricerca!<p>";
-        die();
-      }
 
     mysqli_close($conn);
 

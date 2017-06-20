@@ -36,6 +36,7 @@
     if($resultNeeded && mysqli_num_rows($rs) > 0) {
       return $rs;
     } else {
+      echo "<p id='p_error'>Non sono stati trovati risultati corrispondenti alla tua ricerca!<p>";
       return false;
     }
 
